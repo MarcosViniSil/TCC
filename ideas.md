@@ -35,3 +35,102 @@
 - [NMT](https://pdf.sciencedirectassets.com/280203/1-s2.0-S1877050923X00027/1-s2.0-S1877050923002429/main.pdf?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEJL%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJHMEUCIGhDYHW2aFbDGDMidjPBf8BjNs5PohBDKX4vIg%2BSvXx%2FAiEA90gFQdhO5iPWug19In0WdECClwaOKba37BQQHjo8Ld4qswUIWxAFGgwwNTkwMDM1NDY4NjUiDCR9kGqNsaajKm8ySiqQBZ%2FIqx0Em3aQmQl8blCR6WPAnKb7jJcOsYZpuOQNHHELOC%2FD1Lbc5vB7oBYSivrcYWsHMdh6v9rQVAOQN8NG%2FrPbobVtU%2F9MQ1%2FPcOg0AuNFl8LAyqcXJJYXdw21AReillCg%2BYhMovw7kgdhSI5E3XrjFHc8YzTxWeXakujq04qHIMD9m7CcPzIsKqxGRmG8uVpheFVNN8STfddoFjw0T8Xw7TPoxyTPFQOSnWkRwrnVhlzPSt4qOFXxzemG%2F0UIDYeiHpv3oRCC8SsAwtzUEUA4dpKEUfMYS4YqIZ2gRAQQpz27WU9b05WustZscmWcWAtHFHaOJQMORFwZMwODJwx88yVsFRPUxNK05rBVlZFOnLgM1OCke9NMgI90vWYg1cyrLsPw1MWfxzawzEE7jN440nhbqZpB3KC3bg8FyNEElrSHj%2B87ZRVnx7UupF9XQUDB6Y94IbFPEdNmOqRu6EXvuivEvtQQNZEmNwvhV3ykUY63cnecGr1DrpBj01iEbDFXTW%2FA0LXPTf3Zt%2BiwekJwtpkKEXTEu4717i%2FXlKWORBVRamJ8AyjaBgf2xthEmWug8Sfo6AY03RbgqY6YRU%2FwzRDMSXYRluBtk4v69frdtsQ2l0OK%2Bj6145vUoHI4hHbQG%2ByXn32Ee9eoXYltaQh0x6YI9GGpJz3es4CsNsWy9tVtG1j2oeXqcTDctFJkUb%2BODwsQWbmgqpaxenbo%2FB5ztFlwZYCd0tg%2FH%2Fb7kWY0%2BD80Vj4O4ArB700WhyzpHKZuJrd2Gr7XRhlmIlKO0hLhQUnitrNfkyh9c%2BH%2F3dE47f3BD0azw%2B1Rs0F9MV%2B1aPAZHUBOkVV5MegUHY06jytzIx0IW4549p2ZgcTcwmFjMNOQ%2Fc0GOrEBJY0fAHfkHE1T9dOcJaLfk5%2FflT2BFHuxpSrIBwxJzYAb8BQW6pSlEjmoxPbQjH04QxabszeK5tVT%2F3K8b%2F4%2BZcM5IxUXKPdyAxT%2FPTANBFiVNM%2F7ItACK9MWSA2ozDazq8k1r69JMmWGEex6yHHOisXG4Fl0p4a8yyl48SF2amvDqCgEu7tIl%2BJXmru3Tr94OUJqZNUvY2FjAwSOuXh7yS8MkfLr%2FS7lRslmQXtm4al8&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20260322T023100Z&X-Amz-SignedHeaders=host&X-Amz-Expires=300&X-Amz-Credential=ASIAQ3PHCVTYVWRXVJUV%2F20260322%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=135d3e955fe1dec8bcc54217790b63c5903c885d56ef171bbf154f3d10bb6eb7&hash=5b02839abf435ffe6e213cc0fce9f7393934116a90f41f46a947b83187785e72&host=68042c943591013ac2b2430a89b270f6af2c76d8dfd086a07176afe7c76c2c61&pii=S1877050923002429&tid=spdf-2e0fd8ec-edaf-4b90-bd32-c782e6fc86d1&sid=dbbd63ca886987412a6b6ad4b35656e1a800gxrqa&type=client&tsoh=d3d3LnNjaWVuY2VkaXJlY3QuY29t&rh=d3d3LnNjaWVuY2VkaXJlY3QuY29t&ua=04105b0b56540c575352&rr=9e01c7112e715a2f&cc=br)
 
 - [NMT](https://aclanthology.org/P17-1106.pdf)
+
+Referencial teorico
+
+```latex
+
+\chapter{Referencial Teórico}
+
+\section{Tradução automática neural - NMT}
+
+\section{Tokenização}
+
+\section{Embedding}
+
+\section{Modelo Sequence-to-Sequence}
+
+\section{Função softmax}
+
+\section{Mecanismo de Atenção}
+
+\section{Arquitetura Transformer}
+    \subsection{Visão Geral}
+    \subsection{Codificador}
+    \subsection{Decodificador}
+    \subsection{Feed-Forward}
+    \subsection{multi-head attention}
+    \subsection{positional encoding}
+    \subsection{paralelização}
+
+\section{Modelos de Tradução Open Source}
+    \subsection{MarianMT}
+    \subsection{M2M}
+    \subsection{NLLB}
+
+\section{Métricas de Avaliação}
+    \subsection{BLEU}
+    \subsection{BERTScore}
+    \subsection{chrF}
+
+\section{Eficiência Computacional}
+
+```
+
+## Theorical reference 
+
+### Neural machine translation
+
+[fundation NMT](https://dl.acm.org/doi/epdf/10.1145/3567592)
+[fundation NMT](https://www.proquest.com/openview/f47ba654f199d363ed263b7c18919144/1?pq-origsite=gscholar&cbl=44156)
+
+### Tokenizer
+
+[tokenizer](https://medium.com/thedeephub/all-you-need-to-know-about-tokenization-in-llms-7a801302cf54)
+[tokenizer-example](https://platform.openai.com/tokenizer)
+
+### Embedding
+
+[Embedding](https://arxiv.org/pdf/2411.14708)
+[tokenizer-example](https://huggingface.co/spaces/hesamation/primer-llm-embedding?section=what_are_embeddings?)
+
+### Sequence-to-sequence model
+
+[Sequence-to-sequence](https://www.researchgate.net/profile/Said-Salloum/publication/344664783_A_Systematic_Review_on_Sequence_to_Sequence_Neural_Network_and_its_Models/links/601108f692851c2d4df6fc47/A-Systematic-Review-on-Sequence-to-Sequence-Neural-Network-and-its-Models.pdf)
+[Sequence-to-sequence](https://proceedings.neurips.cc/paper_files/paper/2016/file/312351bff07989769097660a56395065-Paper.pdf)
+
+### Softmax
+- [softmax](https://alpslab.stanford.edu/papers/FrankeDegen_submitted.pdf)
+
+### Attention mechanism
+
+[Attention mechanism](https://arxiv.org/pdf/2204.13154)
+[Attention mechanism](https://arxiv.org/pdf/1803.11407)
+
+### Transformer architecture
+- [Transformer](https://repositorio-api.fei.edu.br/server/api/core/bitstreams/b1594f2a-8189-4008-b755-993ff0b6dbd5/content)
+- [Transformer](https://c4lab.com.br/arquitetura-transformer-explicacao/)
+- [Encoder/Decoder transformer](https://sebastianraschka.com/books/ml-q-and-ai-chapters/ch17/#table-of-contents)
+- [feed forward network](https://www.datacamp.com/tutorial/how-transformers-work)
+- [multi head self-attention](https://aclanthology.org/P19-1580.pdf)
+- [positional encoding](https://aclanthology.org/2024.lrec-main.1478.pdf)
+- [parallelization](https://analisemacro.com.br/inteligencia-artificial/o-que-e-e-como-funciona-a-arquitetura-transformer/)
+
+### BLEU metric
+- [BLEU](https://aclanthology.org/P02-1040.Pdf)
+- [BLEU](http://pt.wikipedia.org/wiki/BLEU)
+
+### BERTScore metric
+- [BERTScore](https://arxiv.org/pdf/1904.09675)
+- [BERTScore](https://systems-analysis.ru/int/BERTScore_(metric)_(PT))
+
+### chrF metric
+- [chrF](https://aclanthology.org/W15-3049.pdf)
+- [chrF](https://www.emergentmind.com/topics/chrf-metric)
+
+
+### Model's paper
+
+- [MarianMT](https://arxiv.org/pdf/1804.00344)
+- [M2M](https://arxiv.org/html/2601.10096v1)
+- [NLLB](https://arxiv.org/pdf/2207.04672)
