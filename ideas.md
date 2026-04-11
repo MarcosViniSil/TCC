@@ -81,31 +81,31 @@ Referencial teorico
 
 ### Neural machine translation
 
-[fundation NMT](https://dl.acm.org/doi/epdf/10.1145/3567592)
-[fundation NMT](https://www.proquest.com/openview/f47ba654f199d363ed263b7c18919144/1?pq-origsite=gscholar&cbl=44156)
+- [fundation NMT](https://dl.acm.org/doi/epdf/10.1145/3567592)
+- [fundation NMT](https://www.proquest.com/openview/f47ba654f199d363ed263b7c18919144/1?pq-origsite=gscholar&cbl=44156)
 
 ### Tokenizer
 
-[tokenizer](https://medium.com/thedeephub/all-you-need-to-know-about-tokenization-in-llms-7a801302cf54)
-[tokenizer-example](https://platform.openai.com/tokenizer)
+- [tokenizer](https://medium.com/thedeephub/all-you-need-to-know-about-tokenization-in-llms-7a801302cf54)
+- [tokenizer-example](https://platform.openai.com/tokenizer)
 
 ### Embedding
 
-[Embedding](https://arxiv.org/pdf/2411.14708)
-[tokenizer-example](https://huggingface.co/spaces/hesamation/primer-llm-embedding?section=what_are_embeddings?)
+- [Embedding](https://arxiv.org/pdf/2411.14708)
+- [tokenizer-example](https://huggingface.co/spaces/hesamation/primer-llm-embedding?section=what_are_embeddings?)
 
 ### Sequence-to-sequence model
 
-[Sequence-to-sequence](https://www.researchgate.net/profile/Said-Salloum/publication/344664783_A_Systematic_Review_on_Sequence_to_Sequence_Neural_Network_and_its_Models/links/601108f692851c2d4df6fc47/A-Systematic-Review-on-Sequence-to-Sequence-Neural-Network-and-its-Models.pdf)
-[Sequence-to-sequence](https://proceedings.neurips.cc/paper_files/paper/2016/file/312351bff07989769097660a56395065-Paper.pdf)
+- [Sequence-to-sequence](https://www.researchgate.net/profile/Said-Salloum/publication/344664783_A_Systematic_Review_on_Sequence_to_Sequence_Neural_Network_and_its_Models/links/601108f692851c2d4df6fc47/A-Systematic-Review-on-Sequence-to-Sequence-Neural-Network-and-its-Models.pdf)
+- [Sequence-to-sequence](https://proceedings.neurips.cc/paper_files/paper/2016/file/312351bff07989769097660a56395065-Paper.pdf)
 
 ### Softmax
 - [softmax](https://alpslab.stanford.edu/papers/FrankeDegen_submitted.pdf)
 
 ### Attention mechanism
 
-[Attention mechanism](https://arxiv.org/pdf/2204.13154)
-[Attention mechanism](https://arxiv.org/pdf/1803.11407)
+- [Attention mechanism](https://arxiv.org/pdf/2204.13154)
+- [Attention mechanism](https://arxiv.org/pdf/1803.11407)
 
 ### Transformer architecture
 - [Transformer](https://repositorio-api.fei.edu.br/server/api/core/bitstreams/b1594f2a-8189-4008-b755-993ff0b6dbd5/content)
