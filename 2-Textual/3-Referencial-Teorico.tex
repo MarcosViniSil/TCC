@@ -7,7 +7,7 @@ As seções seguintes têm como objetivo apresentar os conceitos teóricos que f
 
 Tokenização, ou \textit{tokenization} em inglês, é uma etapa de pré-processamento fundamental no processamento de linguagem natural. Esse processo consiste em converter textos em unidades menores, como bytes, caracteres, subpalavras, palavras ou expressões de múltiplas palavras, denominadas \textit{tokens}. 
 
-A Figura abaixo ilustra esse processo, no qual um texto é segmentado em tokens e, posteriormente, cada token é representado por valores numéricos que podem ser utilizados como entrada para redes neurais artificiais para realização da tradução entre linguas \cite{asgari2025morphbpemorphoawaretokenizerbridging}.
+A Figura abaixo ilustra esse processo, no qual um texto é segmentado em tokens e, posteriormente, cada token é representado por um numero, comumente chamado de identificador ou id, cujo objetivo é mapear um token de volta à uma palavra ao final de uma tradução entre línguas \cite{asgari2025morphbpemorphoawaretokenizerbridging}.
 
 \begin{figure}[H]
     \centering
@@ -20,9 +20,61 @@ A Figura abaixo ilustra esse processo, no qual um texto é segmentado em tokens 
 
 \section{Embedding}
 
-\section{Modelo Sequence-to-Sequence}
+O processamento de linguagem natural, em conjunto com tarefas de tradução entre línguas, exige que palavras ou tokens sejam representados de forma numérica. Nesse contexto, \textit{embeddings} correspondem ao processo de representação de palavras ou tokens em um espaço vetorial de múltiplas dimensões, no qual relações semânticas podem ser modeladas por meio de relações matemáticas.
+
+A representação de tokens em vetores de múltiplas dimensões é fundamental, pois esses vetores são capazes de capturar informações semânticas relevantes. Dessa forma, palavras com significados semelhantes tendem a possuir representações vetoriais próximas nesse espaço. Por exemplo, os vetores associados às palavras “gato” e “cachorro” tendem a ser mais próximos entre si do que em relação à palavra “morango”.
+
+Essa propriedade é essencial para a geração de traduções mais naturais e coerentes, uma vez que permite aos modelos capturar relações semânticas entre palavras e contextos linguísticos \cite{llm_embeddings_explained}.
+
+A Figura abaixo ilustra o processo de conversão de uma sequência de tokens em representações vetoriais em um espaço de multiplas dimensões.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.90\textwidth]{Imagens/embedding-rt.pdf}
+
+    \caption{\label{fig:embedding-rt}Conversão de tokens em embeddings}
+
+    \legend{Fonte: \cite{llm_embeddings_explained} adaptada pelo autor}
+\end{figure}
+
 
 \section{Função softmax}
+
+\textit{Softmax} é uma função matemática frequentemente utilizada como função de ligação probabilística para dados categóricos não ordenados. Dado um vetor de entradas, a aplicação da função softmax resulta em uma saída composta por uma distribuição de probabilidades, na qual cada valor está associado a um elemento da entrada.
+
+A função softmax é amplamente utilizada em modelos de aprendizado de máquina, especialmente em tarefas que envolvem classificação e tradução automática, sendo responsável por converter pontuações geradas pelo modelo em distribuições de probabilidade sobre os possíveis resultados de saída.
+
+A função softmax é definida matematicamente como:
+
+\begin{displaymath}
+p_i = \frac{\exp(\alpha s_i)}{\sum_j \exp(\alpha s_j)}
+\end{displaymath}
+
+onde:
+
+\begin{itemize}
+    \item \(\alpha\): parâmetro de escala da função softmax, frequentemente omitido e considerado igual a 1;
+    \item \(s_i\): valor da i-ésima posição do vetor de pontuações.
+\end{itemize}
+
+A Figura \ref{fig:softmax1-rt} ilustra o funcionamento da função softmax aplicada a um vetor de pontuações, resultando na geração de uma distribuição de probabilidades associada a cada elemento de entrada.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.90\textwidth]{Imagens/softmax-1-rt.pdf}
+    \caption{\label{fig:softmax1-rt}Conversão de pontuações em probabilidades}
+    \legend{Fonte: \cite{franke2023softmax} adaptada pelo autor}
+\end{figure}
+
+Uma das propriedades mais importantes da função softmax em modelos neurais é a sua capacidade de normalização, garantindo que a soma das probabilidades geradas seja igual a 1. Essa característica permite interpretar a saída do modelo como uma distribuição de probabilidade válida sobre os possíveis resultados. A Figura \ref{fig:softmax2-rt} ilustra essa propriedade \cite{franke2023softmax}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.70\textwidth]{Imagens/softmax2-rt.pdf}
+    \caption{\label{fig:softmax2-rt}Propriedade de normalização da função softmax}
+    \legend{Fonte: \cite{franke2023softmax}}
+\end{figure}
+
 
 \section{Mecanismo de Atenção}
 
