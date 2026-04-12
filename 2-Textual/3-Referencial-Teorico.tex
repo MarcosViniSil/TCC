@@ -78,8 +78,66 @@ Uma das propriedades mais importantes da função softmax em modelos neurais é 
 
 \section{Mecanismo de Atenção}
 
+O mecanismo de atenção é uma técnica cujo objetivo é identificar e relacionar as partes mais relevantes dos dados de entrada durante o processamento de sequências.
+
+Grande parte das arquiteturas de tradução automática baseadas em redes neurais utiliza dois componentes principais: o codificador (encoder) e o decodificador (decoder), conforme apresentado na Seção \ref{chap:NMT}. No entanto, modelos tradicionais baseados apenas nessa estrutura enfrentam limitações ao representar sequências longas, uma vez que toda a informação precisa ser comprimida em um vetor de dimensão fixa.
+
+Nesse contexto, os mecanismos de atenção modificam a forma como redes neurais processam dados sequenciais, permitindo acesso direto a todas as posições da sequência de entrada. Isso elimina a necessidade de compressão em uma única representação vetorial e possibilita uma melhor captura de relações contextuais.
+
+A operação de atenção consiste na computação de uma soma ponderada sobre os dados de entrada, na qual cada peso representa a importância de uma determinada posição da sequência para o elemento que está sendo processado. Na prática, isso permite que diferentes partes da entrada se relacionem entre si, possibilitando a captura de dependências contextuais entre palavras em tarefas de tradução.
+
+As equações a seguir definem a formulação matemática de um mecanismo de atenção \cite{hays2026attentionmechanismsneuralnetworks}:
+
+\begin{displaymath}
+e_{ij} = score(\mathbf{q}_i, \mathbf{k}_j)
+\end{displaymath}
+
+\begin{displaymath}
+\alpha_{ij} = softmax(e_{ij})
+\end{displaymath}
+
+\begin{displaymath}
+\mathbf{c}_i = \sum_{j=1}^{n} \alpha_{ij} \mathbf{v}_j
+\end{displaymath}
+
+Onde:
+
+\begin{itemize}
+    \item \(\mathbf{q}_i\): vetor de consulta (\textit{query}), representando a informação buscada na posição \(i\);
+    \item \(\mathbf{k}_j\): vetor de chave (\textit{key}), representando a informação disponível na posição \(j\);
+    \item \(\mathbf{v}_j\): vetor de valor (\textit{value}), contendo a informação a ser agregada;
+    \item \(\alpha_{ij}\): peso de atenção, formando uma distribuição de probabilidade sobre as posições de entrada, indicando o grau de contribuição de cada posição para a saída na posição \(i\).
+\end{itemize}
+
+A Figura \ref{fig:attention-1-rt} ilustra um exemplo de tradução automática sem o uso de mecanismos de atenção, no qual é possível observar limitações na captura de relações entre palavras da língua de origem e da língua de destino.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.70\textwidth]{Imagens/attention-rt-1.pdf}
+    \caption{\label{fig:attention-1-rt}Tradução sem a utilização de um mecanismo de atenção}
+    \legend{Fonte: \cite{raschka2023selfattention}}
+\end{figure}
+
+Por outro lado, a Figura \ref{fig:attention-2-rt} apresenta o uso do mecanismo de atenção, evidenciando a capacidade do modelo de capturar relações entre palavras, resultando em traduções mais coerentes e contextualizadas.
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.70\textwidth]{Imagens/attention-rt-2.pdf}
+    \caption{\label{fig:attention-2-rt}Tradução com a utilização de um mecanismo de atenção}
+    \legend{Fonte: \cite{raschka2023selfattention}}
+\end{figure}
+
+
 \section{Arquitetura Transformer}
     \subsection{Visão Geral}
+
+    A arquitetura Transformer foi proposta em 2017 pela empresa Google no artigo intitulado \textit{“Attention Is All You Need”}, representando uma mudança de paradigma em relação aos modelos até então predominantes, baseados em redes neurais recorrentes (RNN).
+
+    Essa arquitetura introduziu avanços importantes, como a capacidade de capturar dependências de longo alcance entre elementos de uma sequência e o processamento paralelo dos dados, resultando em um novo estado da arte em diversas tarefas de processamento de linguagem natural.
+
+    A partir da arquitetura Transformer, tornou-se possível o desenvolvimento de modelos avançados de geração de texto, como o GPT, da OpenAI, o Gemini, da Google, e o LLaMA, da Meta, além de impulsionar a evolução de modelos de tradução automática, como o MarianMT, de código aberto, e os modelos M2M e NLLB, também desenvolvidos pela Meta. Esses modelos representam avanços significativos na tarefa de tradução entre línguas, todos baseados nos princípios introduzidos pela arquitetura Transformer \cite{c4lab2023transformer}.
+
     \subsection{Codificador}
     \subsection{Decodificador}
     \subsection{Feed-Forward}
