@@ -46,9 +46,10 @@ A função softmax é amplamente utilizada em modelos de aprendizado de máquina
 
 A função softmax é definida matematicamente como:
 
-\begin{displaymath}
+\begin{equation}
 p_i = \frac{\exp(\alpha s_i)}{\sum_j \exp(\alpha s_j)}
-\end{displaymath}
+\label{eq:softmax-definition}
+\end{equation}
 
 onde:
 
@@ -88,17 +89,20 @@ A operação de atenção consiste na computação de uma soma ponderada sobre o
 
 As equações a seguir definem a formulação matemática de um mecanismo de atenção \cite{hays2026attentionmechanismsneuralnetworks}:
 
-\begin{displaymath}
+\begin{equation}
 e_{ij} = score(\mathbf{q}_i, \mathbf{k}_j)
-\end{displaymath}
+\label{eq:attention-score}
+\end{equation}
 
-\begin{displaymath}
+\begin{equation}
 \alpha_{ij} = softmax(e_{ij})
-\end{displaymath}
+\label{eq:attention-softmax}
+\end{equation}
 
-\begin{displaymath}
+\begin{equation}
 \mathbf{c}_i = \sum_{j=1}^{n} \alpha_{ij} \mathbf{v}_j
-\end{displaymath}
+\label{eq:attention-calculation}
+\end{equation}
 
 Onde:
 
@@ -138,11 +142,78 @@ Por outro lado, a Figura \ref{fig:attention-2-rt} apresenta o uso do mecanismo d
 
     A partir da arquitetura Transformer, tornou-se possível o desenvolvimento de modelos avançados de geração de texto, como o GPT, da OpenAI, o Gemini, da Google, e o LLaMA, da Meta, além de impulsionar a evolução de modelos de tradução automática, como o MarianMT, de código aberto, e os modelos M2M e NLLB, também desenvolvidos pela Meta. Esses modelos representam avanços significativos na tarefa de tradução entre línguas, todos baseados nos princípios introduzidos pela arquitetura Transformer \cite{c4lab2023transformer}.
 
-    \subsection{Codificador}
-    \subsection{Decodificador}
-    \subsection{Feed-Forward}
-    \subsection{multi-head attention}
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=0.6\textwidth]{Imagens/transformer.pdf}
+    \caption{\label{fig:fig-architecture}Arquitetura transformer}
+    \legend{Fonte: \cite{DBLP:journals/corr/VaswaniSPUJGKP17}}
+\end{figure}
     \subsection{positional encoding}
+    O \textit{positional encoding}, ou codificação posicional, é uma técnica utilizada para incorporar informações sobre a posição dos tokens em uma sequência na arquitetura Transformer.
+
+    Em tarefas de tradução automática, a ordem das palavras desempenha um papel fundamental na construção do significado semântico de uma sentença. A posição dos termos permite identificar relações de dependência entre palavras, além de influenciar diretamente a estrutura da frase na língua de destino, uma vez que diferentes idiomas apresentam diferentes organizações sintáticas.
+
+    Como a arquitetura Transformer não possui mecanismos recorrentes ou convolucionais, ela não é capaz de capturar informações de ordem de forma implícita. Para contornar essa limitação, são adicionadas informações posicionais aos embeddings de entrada por meio de funções determinísticas baseadas em seno e cosseno \cite{ibm_positional_encoding}.
+
+    A codificação posicional é definida pelas seguintes equações \cite{DBLP:journals/corr/VaswaniSPUJGKP17}:
+
+
+\begin{equation}
+    PE_{(pos, 2i)} = \sin\left(\frac{pos}{10000^{2i/d_{model}}}\right)
+    \label{eq:positional-encoding-sin}
+\end{equation}
+
+\begin{equation}
+    PE_{(pos, 2i+1)} = \cos\left(\frac{pos}{10000^{2i/d_{model}}}\right)
+    \label{eq:positional-encoding-cos}
+\end{equation}
+
+Onde:
+
+\begin{itemize}
+    \item \( pos \): posição do token na sequência;
+    \item \( i \): índice da dimensão do vetor de embedding;
+    \item \( d_{model} \): dimensão do vetor de embedding;
+    \item \( PE \): função de codificação posicional que associa uma posição da sequência a uma representação vetorial.
+\end{itemize}
+Essas funções permitem que cada posição na sequência seja representada por um vetor único, preservando relações relativas entre posições, o que auxilia o modelo na identificação da ordem dos tokens.
+
+A Figura \ref{fig:fig-positiona-encoding} ilustra o processo de aplicação do \textit{positional encoding} em uma sequência de entrada.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=0.6\textwidth]{Imagens/positional-encoding.pdf}
+    \caption{\label{fig:fig-positiona-encoding} Exemplo de codificação posicional aplicada a uma sequência}
+    \legend{Fonte: \cite{brownlee_positional_encoding} adaptado}
+\end{figure}
+    \subsection{Encoder}
+        Encoder, ou codificador, é um dos principais componentes da arquitetura Transformer, responsável por receber a sequência de entrada já convertida em embeddings e enriquecida com informações de posição por meio do \textit{positional encoding}. Seu objetivo é transformar essa sequência em um conjunto de representações vetoriais contextuais, capazes de capturar relações semânticas relevantes entre os tokens.
+    
+        Cada bloco do encoder é composto por duas subcamadas principais. A primeira é o mecanismo de atenção (\textit{self-attention}), responsável por relacionar os tokens da sequência entre si, permitindo a captura de dependências de curto e longo alcance. A segunda subcamada é a rede \textit{feed-forward}, aplicada de forma independente a cada posição da sequência, com o objetivo de transformar e enriquecer as representações vetoriais geradas pela etapa anterior.
+    
+        Após cada subcamada, são aplicadas operações de normalização e conexões residuais, com a finalidade de estabilizar o treinamento e preservar informações importantes ao longo das camadas do modelo.
+    
+        Ao final do processamento pelo encoder, é gerado um conjunto de vetores de representações contextuais, no qual cada vetor está associado a um token da sequência de entrada. Esses vetores incorporam informações sobre o contexto global da sentença, incluindo relações entre palavras, e são posteriormente utilizados pelo decoder para a geração da tradução na língua de destino \cite{c4lab_transformer}.
+
+
+    \subsection{Decoder}
+    Decoder, ou decodificador, é o componente da arquitetura Transformer responsável por gerar a sequência de saída, ou seja, a tradução na língua de destino, com base nas representações contextuais produzidas pelo encoder.
+
+    Assim como o encoder, o decoder é composto por múltiplos blocos empilhados, sendo cada bloco formado por três subcamadas principais: \textit{Masked Self-Attention}, \textit{Cross-Attention} (atenção sobre o encoder) e uma rede \textit{feed-forward}.
+
+    A subcamada de \textit{Masked Self-Attention} aplica o mecanismo de atenção sobre a própria sequência de saída, porém com uma máscara que impede o modelo de acessar tokens futuros. Dessa forma, a geração ocorre de maneira autoregressiva, considerando apenas os tokens já produzidos até o momento, o que garante coerência na construção da tradução.
+
+    A subcamada de \textit{Cross-Attention} permite que o decoder utilize as informações produzidas pelo encoder, estabelecendo relações entre os tokens da sequência de saída e os tokens da sequência de entrada. Esse mecanismo é essencial para alinhar corretamente a tradução com o contexto da frase original.
+
+    Além disso, o mecanismo de atenção utilizado é do tipo \textit{multi-head attention}, que realiza múltiplas operações de atenção em paralelo, permitindo ao modelo capturar diferentes tipos de relações entre os elementos da sequência.
+
+    Por fim, a camada \textit{feed-forward} é aplicada com o objetivo de transformar e refinar as representações geradas, contribuindo para a produção de uma saída mais consistente e contextualizada.
+
+    Durante o processo de geração, o decoder produz a tradução de forma iterativa, gerando um token por vez. A cada etapa, o token gerado é realimentado como entrada para o próprio decoder, juntamente com as representações do encoder, até que um token especial de término seja produzido, indicando o fim da tradução \cite{c4lab_transformer}.
+    
+    \subsection{Feed-Forward}
+    \subsection{Scaled Dot-Product Attention}
+    \subsection{multi-head attention}
     \subsection{paralelização}
 
 \section{Modelos de Tradução Open Source}
