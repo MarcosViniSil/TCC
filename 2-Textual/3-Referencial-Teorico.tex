@@ -211,10 +211,46 @@ A Figura \ref{fig:fig-positiona-encoding} ilustra o processo de aplicação do \
 
     Durante o processo de geração, o decoder produz a tradução de forma iterativa, gerando um token por vez. A cada etapa, o token gerado é realimentado como entrada para o próprio decoder, juntamente com as representações do encoder, até que um token especial de término seja produzido, indicando o fim da tradução \cite{c4lab_transformer}.
     
-    \subsection{Feed-Forward}
+    \subsection{Feed-Forward Neural Network}
+    Redes neurais \textit{feed-forward} são modelos computacionais nos quais a informação flui em uma única direção, da entrada para a saída, sem a presença de ciclos ou realimentação. Essas redes são compostas por camadas de neurônios interconectados, nas quais cada conexão possui um peso associado, responsável por ajustar a influência dos dados ao longo do processamento.
+
+    De forma geral, uma rede \textit{feed-forward} é estruturada em três tipos de camadas: camada de entrada, responsável por receber os dados, camadas ocultas, responsáveis pelo processamento das informações por meio de transformações não lineares, e camada de saída, que produz o resultado final do modelo.\cite{sazli2006brief}
+
+    No contexto da arquitetura Transformer, as redes \textit{feed-forward} são aplicadas de forma independente a cada posição da sequência, após o mecanismo de atenção. Seu principal objetivo é transformar e refinar as representações vetoriais geradas pelas camadas de atenção, contribuindo para a modelagem de relações mais complexas entre os elementos da sequência.\cite{c4lab_transformer}
+
+    A Figura \ref{fig:fig-feed-forward} ilustra um exemplo de rede neural \textit{feed-forward} com uma camada oculta.
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{Imagens/feed-forward.pdf}
+    \caption{\label{fig:fig-feed-forward} Rede neural feed-forward}
+    \legend{Fonte: \cite{geeksforgeeks_fnn} adaptado}
+\end{figure}
+
+
     \subsection{Scaled Dot-Product Attention}
+    No contexto da arquitetura Transformer, o mecanismo de atenção é implementado por meio da chamada \textit{Scaled Dot-Product Attention}. Esse mecanismo calcula a relevância entre diferentes elementos da sequência de entrada utilizando três componentes principais: consultas (\textit{queries}), chaves (\textit{keys}) e valores (\textit{values}).
+
+    A atenção é calculada por meio do produto escalar entre consultas e chaves, seguido de uma normalização utilizando a função softmax, conforme a equação \cite{DBLP:journals/corr/VaswaniSPUJGKP17}:
+
+
+\begin{equation}
+    {Attention}(Q, K, V) = {softmax}\left( \frac{QK^T}{\sqrt{d_k}} \right)V
+\end{equation}
+
+onde:
+
+\begin{itemize}
+    \item \( Q \): Representa a perspectiva da palavra atual. Para uma palavra específica \( i \), seu vetor que consulta(\( Q \)) é utilizado para comparar com todas as palavras disponíveis;
+    \item \( K \): Representa o rótulo ou identificador da informação que uma palavra carrega. Cada palavra \( j \) possui um vetor de chaves(\( K \)), onde cada consulta \( Q_i \) é comparada com todas as chaves, \( K_i \), com o objetivo do calcular a atenção entre as palavras, indicando o quão relevante a palavra \( j \) é para a palavra \( i \);
+    \item \( V \): Representa o conteúdo atual ou significado de uma palavra atual. Onde cada palavra \( j \) possui também um vetor de valores \( v_j \). Uma vez que que a atenção entre \( Q_i \) e \( K_j \) é computado, este valor é utilizado para ajustar a relevância do vetor de valores correspondentes \( V_j \) \cite{ibm_attention_mechanism}.
+\end{itemize}
+
+O fator de escala \(\sqrt{d_k}\) é utilizado para evitar valores muito elevados no produto escalar, o que poderia prejudicar a estabilidade da função softmax.
+
+
     \subsection{multi-head attention}
-    \subsection{paralelização}
 
 \section{Modelos de Tradução Open Source}
     \subsection{MarianMT}
