@@ -1,13 +1,33 @@
-\section{Tradução automática neural - NMT}
-Como apresentado na Seção \ref{chap:NMT}, a tradução automática neural é uma importante tarefa que tem como objetivo realizar a tradução de uma língua de origem para uma língua de destino por meio de sistemas computacionais, mais especificamente utilizando redes neurais artificiais. Essas redes buscam simular, de forma simplificada, o funcionamento do cérebro humano, permitindo a geração de traduções que se aproximem, o máximo possível, de traduções realizadas por humanos \cite{tan2020neural}.
+\section{Tradução Automática Neural - NMT}
+Como apresentado na Seção \ref{chap:NMT}, a tradução automática neural é uma
+importante tarefa que tem como objetivo realizar a tradução de uma língua de
+origem para uma língua de destino por meio de sistemas computacionais, mais
+especificamente utilizando redes neurais artificiais. Essas redes buscam
+simular, de forma simplificada, o funcionamento do cérebro humano, permitindo a
+geração de traduções que se aproximem, o máximo possível, de traduções
+realizadas por humanos \cite{tan2020neural}.
 
-As seções seguintes têm como objetivo apresentar os conceitos teóricos que fundamentam o estudo da arquitetura Transformer, proposta com o intuito de aprimorar a tarefa de tradução automática. Essa arquitetura introduz novos componentes e combina técnicas já existentes de forma mais eficiente. Como resultado, a arquitetura Transformer estabeleceu um novo estado da arte na tradução automática baseada em redes neurais artificiais \cite{DBLP:journals/corr/VaswaniSPUJGKP17}.
+As seções seguintes têm como objetivo apresentar os conceitos teóricos que
+fundamentam o estudo da arquitetura Transformer, proposta com o intuito de
+aprimorar a tarefa de tradução automática. Essa arquitetura introduz novos
+componentes e combina técnicas já existentes de forma mais eficiente. Como
+resultado, a arquitetura Transformer estabeleceu um novo estado da arte na
+tradução automática baseada em redes neurais artificiais
+\cite{DBLP:journals/corr/VaswaniSPUJGKP17}.
 
 \section{Tokenização}
 
-Tokenização, ou \textit{tokenization} em inglês, é uma etapa de pré-processamento fundamental no processamento de linguagem natural. Esse processo consiste em converter textos em unidades menores, como bytes, caracteres, subpalavras, palavras ou expressões de múltiplas palavras, denominadas \textit{tokens}. 
+Tokenização, ou \textit{tokenization} em inglês, é uma etapa de
+pré-processamento fundamental no processamento de linguagem natural. Esse
+processo consiste em converter textos em unidades menores, como bytes,
+caracteres, subpalavras, palavras ou expressões de múltiplas palavras,
+denominadas \textit{tokens}.
 
-A Figura abaixo ilustra esse processo, no qual um texto é segmentado em tokens e, posteriormente, cada token é representado por um numero, comumente chamado de identificador ou id, cujo objetivo é mapear um token de volta à uma palavra ao final de uma tradução entre línguas \cite{asgari2025morphbpemorphoawaretokenizerbridging}.
+A Figura abaixo ilustra esse processo, no qual um texto é segmentado em tokens
+e, posteriormente, cada token é representado por um numero, comumente chamado
+de identificador ou id, cujo objetivo é mapear um token de volta à uma palavra
+ao final de uma tradução entre línguas
+\cite{asgari2025morphbpemorphoawaretokenizerbridging}.
 
 \begin{figure}[H]
     \centering
@@ -20,13 +40,25 @@ A Figura abaixo ilustra esse processo, no qual um texto é segmentado em tokens 
 
 \section{Embedding}
 
-O processamento de linguagem natural, em conjunto com tarefas de tradução entre línguas, exige que palavras ou tokens sejam representados de forma numérica. Nesse contexto, \textit{embeddings} correspondem ao processo de representação de palavras ou tokens em um espaço vetorial de múltiplas dimensões, no qual relações semânticas podem ser modeladas por meio de relações matemáticas.
+O processamento de linguagem natural, em conjunto com tarefas de tradução entre
+línguas, exige que palavras ou tokens sejam representados de forma numérica.
+Nesse contexto, \textit{embeddings} correspondem ao processo de representação
+de palavras ou tokens em um espaço vetorial de múltiplas dimensões, no qual
+relações semânticas podem ser modeladas por meio de relações matemáticas.
 
-A representação de tokens em vetores de múltiplas dimensões é fundamental, pois esses vetores são capazes de capturar informações semânticas relevantes. Dessa forma, palavras com significados semelhantes tendem a possuir representações vetoriais próximas nesse espaço. Por exemplo, os vetores associados às palavras “gato” e “cachorro” tendem a ser mais próximos entre si do que em relação à palavra “morango”.
+A representação de tokens em vetores de múltiplas dimensões é fundamental, pois
+esses vetores são capazes de capturar informações semânticas relevantes. Dessa
+forma, palavras com significados semelhantes tendem a possuir representações
+vetoriais próximas nesse espaço. Por exemplo, os vetores associados às palavras
+“gato” e “cachorro” tendem a ser mais próximos entre si do que em relação à
+palavra “morango”.
 
-Essa propriedade é essencial para a geração de traduções mais naturais e coerentes, uma vez que permite aos modelos capturar relações semânticas entre palavras e contextos linguísticos \cite{llm_embeddings_explained}.
+Essa propriedade é essencial para a geração de traduções mais naturais e
+coerentes, uma vez que permite aos modelos capturar relações semânticas entre
+palavras e contextos linguísticos \cite{llm_embeddings_explained}.
 
-A Figura abaixo ilustra o processo de conversão de uma sequência de tokens em representações vetoriais em um espaço de multiplas dimensões.
+A Figura abaixo ilustra o processo de conversão de uma sequência de tokens em
+representações vetoriais em um espaço de multiplas dimensões.
 
 \begin{figure}[H]
     \centering
@@ -37,18 +69,20 @@ A Figura abaixo ilustra o processo de conversão de uma sequência de tokens em 
     \legend{Fonte: \cite{llm_embeddings_explained} adaptada pelo autor}
 \end{figure}
 
-
-\section{Função softmax}
+\section{Função Softmax}
 
 \textit{Softmax} é uma função matemática frequentemente utilizada como função de ligação probabilística para dados categóricos não ordenados. Dado um vetor de entradas, a aplicação da função softmax resulta em uma saída composta por uma distribuição de probabilidades, na qual cada valor está associado a um elemento da entrada.
 
-A função softmax é amplamente utilizada em modelos de aprendizado de máquina, especialmente em tarefas que envolvem classificação e tradução automática, sendo responsável por converter pontuações geradas pelo modelo em distribuições de probabilidade sobre os possíveis resultados de saída.
+A função softmax é amplamente utilizada em modelos de aprendizado de máquina,
+especialmente em tarefas que envolvem classificação e tradução automática,
+sendo responsável por converter pontuações geradas pelo modelo em distribuições
+de probabilidade sobre os possíveis resultados de saída.
 
 A função softmax é definida matematicamente como:
 
 \begin{equation}
-p_i = \frac{\exp(\alpha s_i)}{\sum_j \exp(\alpha s_j)}
-\label{eq:softmax-definition}
+    p_i = \frac{\exp(\alpha s_i)}{\sum_j \exp(\alpha s_j)}
+    \label{eq:softmax-definition}
 \end{equation}
 
 onde:
@@ -58,7 +92,9 @@ onde:
     \item \(s_i\): valor da i-ésima posição do vetor de pontuações.
 \end{itemize}
 
-A Figura \ref{fig:softmax1-rt} ilustra o funcionamento da função softmax aplicada a um vetor de pontuações, resultando na geração de uma distribuição de probabilidades associada a cada elemento de entrada.
+A Figura \ref{fig:softmax1-rt} ilustra o funcionamento da função softmax
+aplicada a um vetor de pontuações, resultando na geração de uma distribuição de
+probabilidades associada a cada elemento de entrada.
 
 \begin{figure}[H]
     \centering
@@ -67,7 +103,12 @@ A Figura \ref{fig:softmax1-rt} ilustra o funcionamento da função softmax aplic
     \legend{Fonte: \cite{franke2023softmax} adaptada pelo autor}
 \end{figure}
 
-Uma das propriedades mais importantes da função softmax em modelos neurais é a sua capacidade de normalização, garantindo que a soma das probabilidades geradas seja igual a 1. Essa característica permite interpretar a saída do modelo como uma distribuição de probabilidade válida sobre os possíveis resultados. A Figura \ref{fig:softmax2-rt} ilustra essa propriedade \cite{franke2023softmax}.
+Uma das propriedades mais importantes da função softmax em modelos neurais é a
+sua capacidade de normalização, garantindo que a soma das probabilidades
+geradas seja igual a 1. Essa característica permite interpretar a saída do
+modelo como uma distribuição de probabilidade válida sobre os possíveis
+resultados. A Figura \ref{fig:softmax2-rt} ilustra essa propriedade
+\cite{franke2023softmax}.
 
 \begin{figure}[H]
     \centering
@@ -76,32 +117,48 @@ Uma das propriedades mais importantes da função softmax em modelos neurais é 
     \legend{Fonte: \cite{franke2023softmax}}
 \end{figure}
 
+\section{Mecanismo De Atenção}
 
-\section{Mecanismo de Atenção}
+O mecanismo de atenção é uma técnica cujo objetivo é identificar e relacionar
+as partes mais relevantes dos dados de entrada durante o processamento de
+sequências.
 
-O mecanismo de atenção é uma técnica cujo objetivo é identificar e relacionar as partes mais relevantes dos dados de entrada durante o processamento de sequências.
+Grande parte das arquiteturas de tradução automática baseadas em redes neurais
+utiliza dois componentes principais: o codificador (encoder) e o decodificador
+(decoder), conforme apresentado na Seção \ref{chap:NMT}. No entanto, modelos
+tradicionais baseados apenas nessa estrutura enfrentam limitações ao
+representar sequências longas, uma vez que toda a informação precisa ser
+comprimida em um vetor de dimensão fixa.
 
-Grande parte das arquiteturas de tradução automática baseadas em redes neurais utiliza dois componentes principais: o codificador (encoder) e o decodificador (decoder), conforme apresentado na Seção \ref{chap:NMT}. No entanto, modelos tradicionais baseados apenas nessa estrutura enfrentam limitações ao representar sequências longas, uma vez que toda a informação precisa ser comprimida em um vetor de dimensão fixa.
+Nesse contexto, os mecanismos de atenção modificam a forma como redes neurais
+processam dados sequenciais, permitindo acesso direto a todas as posições da
+sequência de entrada. Isso elimina a necessidade de compressão em uma única
+representação vetorial e possibilita uma melhor captura de relações
+contextuais.
 
-Nesse contexto, os mecanismos de atenção modificam a forma como redes neurais processam dados sequenciais, permitindo acesso direto a todas as posições da sequência de entrada. Isso elimina a necessidade de compressão em uma única representação vetorial e possibilita uma melhor captura de relações contextuais.
+A operação de atenção consiste na computação de uma soma ponderada sobre os
+dados de entrada, na qual cada peso representa a importância de uma determinada
+posição da sequência para o elemento que está sendo processado. Na prática,
+isso permite que diferentes partes da entrada se relacionem entre si,
+possibilitando a captura de dependências contextuais entre palavras em tarefas
+de tradução.
 
-A operação de atenção consiste na computação de uma soma ponderada sobre os dados de entrada, na qual cada peso representa a importância de uma determinada posição da sequência para o elemento que está sendo processado. Na prática, isso permite que diferentes partes da entrada se relacionem entre si, possibilitando a captura de dependências contextuais entre palavras em tarefas de tradução.
-
-As equações a seguir definem a formulação matemática de um mecanismo de atenção \cite{hays2026attentionmechanismsneuralnetworks}:
+As equações a seguir definem a formulação matemática de um mecanismo de atenção
+\cite{hays2026attentionmechanismsneuralnetworks}:
 
 \begin{equation}
-e_{ij} = score(\mathbf{q}_i, \mathbf{k}_j)
-\label{eq:attention-score}
+    e_{ij} = score(\mathbf{q}_i, \mathbf{k}_j)
+    \label{eq:attention-score}
 \end{equation}
 
 \begin{equation}
-\alpha_{ij} = softmax(e_{ij})
-\label{eq:attention-softmax}
+    \alpha_{ij} = softmax(e_{ij})
+    \label{eq:attention-softmax}
 \end{equation}
 
 \begin{equation}
-\mathbf{c}_i = \sum_{j=1}^{n} \alpha_{ij} \mathbf{v}_j
-\label{eq:attention-calculation}
+    \mathbf{c}_i = \sum_{j=1}^{n} \alpha_{ij} \mathbf{v}_j
+    \label{eq:attention-calculation}
 \end{equation}
 
 Onde:
@@ -113,7 +170,9 @@ Onde:
     \item \(\alpha_{ij}\): peso de atenção, formando uma distribuição de probabilidade sobre as posições de entrada, indicando o grau de contribuição de cada posição para a saída na posição \(i\).
 \end{itemize}
 
-A Figura \ref{fig:attention-1-rt} ilustra um exemplo de tradução automática sem o uso de mecanismos de atenção, no qual é possível observar limitações na captura de relações entre palavras da língua de origem e da língua de destino.
+A Figura \ref{fig:attention-1-rt} ilustra um exemplo de tradução automática sem
+o uso de mecanismos de atenção, no qual é possível observar limitações na
+captura de relações entre palavras da língua de origem e da língua de destino.
 
 \begin{figure}[H]
     \centering
@@ -122,8 +181,9 @@ A Figura \ref{fig:attention-1-rt} ilustra um exemplo de tradução automática s
     \legend{Fonte: \cite{raschka2023selfattention}}
 \end{figure}
 
-Por outro lado, a Figura \ref{fig:attention-2-rt} apresenta o uso do mecanismo de atenção, evidenciando a capacidade do modelo de capturar relações entre palavras, resultando em traduções mais coerentes e contextualizadas.
-
+Por outro lado, a Figura \ref{fig:attention-2-rt} apresenta o uso do mecanismo
+de atenção, evidenciando a capacidade do modelo de capturar relações entre
+palavras, resultando em traduções mais coerentes e contextualizadas.
 
 \begin{figure}[H]
     \centering
@@ -132,15 +192,27 @@ Por outro lado, a Figura \ref{fig:attention-2-rt} apresenta o uso do mecanismo d
     \legend{Fonte: \cite{raschka2023selfattention}}
 \end{figure}
 
-
 \section{Arquitetura Transformer}
-    \subsection{Visão Geral}
+\subsection{Visão Geral}
 
-    A arquitetura Transformer foi proposta em 2017 pela empresa Google no artigo intitulado \textit{“Attention Is All You Need”}, representando uma mudança de paradigma em relação aos modelos até então predominantes, baseados em redes neurais recorrentes (RNN).
+A arquitetura Transformer foi proposta em 2017 pela empresa Google no artigo
+intitulado \textit{“Attention Is All You Need”}, representando uma mudança de
+paradigma em relação aos modelos até então predominantes, baseados em redes
+neurais recorrentes (RNN).
 
-    Essa arquitetura introduziu avanços importantes, como a capacidade de capturar dependências de longo alcance entre elementos de uma sequência e o processamento paralelo dos dados, resultando em um novo estado da arte em diversas tarefas de processamento de linguagem natural.
+Essa arquitetura introduziu avanços importantes, como a capacidade de capturar
+dependências de longo alcance entre elementos de uma sequência e o
+processamento paralelo dos dados, resultando em um novo estado da arte em
+diversas tarefas de processamento de linguagem natural.
 
-    A partir da arquitetura Transformer, tornou-se possível o desenvolvimento de modelos avançados de geração de texto, como o GPT, da OpenAI, o Gemini, da Google, e o LLaMA, da Meta, além de impulsionar a evolução de modelos de tradução automática, como o MarianMT, de código aberto, e os modelos M2M e NLLB, também desenvolvidos pela Meta. Esses modelos representam avanços significativos na tarefa de tradução entre línguas, todos baseados nos princípios introduzidos pela arquitetura Transformer \cite{c4lab2023transformer}.
+A partir da arquitetura Transformer, tornou-se possível o desenvolvimento de
+modelos avançados de geração de texto, como o GPT, da OpenAI, o Gemini, da
+Google, e o LLaMA, da Meta, além de impulsionar a evolução de modelos de
+tradução automática, como o MarianMT, de código aberto, e os modelos M2M e
+NLLB, também desenvolvidos pela Meta. Esses modelos representam avanços
+significativos na tarefa de tradução entre línguas, todos baseados nos
+princípios introduzidos pela arquitetura Transformer
+\cite{c4lab2023transformer}.
 
 \begin{figure}[H]
     \centering
@@ -148,15 +220,25 @@ Por outro lado, a Figura \ref{fig:attention-2-rt} apresenta o uso do mecanismo d
     \caption{\label{fig:fig-architecture}Arquitetura transformer}
     \legend{Fonte: \cite{DBLP:journals/corr/VaswaniSPUJGKP17}}
 \end{figure}
-    \subsection{positional encoding}
-    O \textit{positional encoding}, ou codificação posicional, é uma técnica utilizada para incorporar informações sobre a posição dos tokens em uma sequência na arquitetura Transformer.
+\subsection{Positional Encoding}
+O \textit{positional encoding}, ou codificação posicional, é uma técnica
+utilizada para incorporar informações sobre a posição dos tokens em uma
+sequência na arquitetura Transformer.
 
-    Em tarefas de tradução automática, a ordem das palavras desempenha um papel fundamental na construção do significado semântico de uma sentença. A posição dos termos permite identificar relações de dependência entre palavras, além de influenciar diretamente a estrutura da frase na língua de destino, uma vez que diferentes idiomas apresentam diferentes organizações sintáticas.
+Em tarefas de tradução automática, a ordem das palavras desempenha um papel
+fundamental na construção do significado semântico de uma sentença. A posição
+dos termos permite identificar relações de dependência entre palavras, além de
+influenciar diretamente a estrutura da frase na língua de destino, uma vez que
+diferentes idiomas apresentam diferentes organizações sintáticas.
 
-    Como a arquitetura Transformer não possui mecanismos recorrentes ou convolucionais, ela não é capaz de capturar informações de ordem de forma implícita. Para contornar essa limitação, são adicionadas informações posicionais aos embeddings de entrada por meio de funções determinísticas baseadas em seno e cosseno \cite{ibm_positional_encoding}.
+Como a arquitetura Transformer não possui mecanismos recorrentes ou
+convolucionais, ela não é capaz de capturar informações de ordem de forma
+implícita. Para contornar essa limitação, são adicionadas informações
+posicionais aos embeddings de entrada por meio de funções determinísticas
+baseadas em seno e cosseno \cite{ibm_positional_encoding}.
 
-    A codificação posicional é definida pelas seguintes equações \cite{DBLP:journals/corr/VaswaniSPUJGKP17}:
-
+A codificação posicional é definida pelas seguintes equações
+\cite{DBLP:journals/corr/VaswaniSPUJGKP17}:
 
 \begin{equation}
     PE_{(pos, 2i)} = \sin\left(\frac{pos}{10000^{2i/d_{model}}}\right)
@@ -178,7 +260,8 @@ Onde:
 \end{itemize}
 Essas funções permitem que cada posição na sequência seja representada por um vetor único, preservando relações relativas entre posições, o que auxilia o modelo na identificação da ordem dos tokens.
 
-A Figura \ref{fig:fig-positiona-encoding} ilustra o processo de aplicação do \textit{positional encoding} em uma sequência de entrada.
+A Figura \ref{fig:fig-positiona-encoding} ilustra o processo de aplicação do
+\textit{positional encoding} em uma sequência de entrada.
 
 \begin{figure}[H]
     \centering
@@ -186,40 +269,29 @@ A Figura \ref{fig:fig-positiona-encoding} ilustra o processo de aplicação do \
     \caption{\label{fig:fig-positiona-encoding} Exemplo de codificação posicional aplicada a uma sequência}
     \legend{Fonte: \cite{brownlee_positional_encoding} adaptado}
 \end{figure}
-    \subsection{Encoder}
-        Encoder, ou codificador, é um dos principais componentes da arquitetura Transformer, responsável por receber a sequência de entrada já convertida em embeddings e enriquecida com informações de posição por meio do \textit{positional encoding}. Seu objetivo é transformar essa sequência em um conjunto de representações vetoriais contextuais, capazes de capturar relações semânticas relevantes entre os tokens.
-    
-        Cada bloco do encoder é composto por duas subcamadas principais. A primeira é o mecanismo de atenção (\textit{self-attention}), responsável por relacionar os tokens da sequência entre si, permitindo a captura de dependências de curto e longo alcance. A segunda subcamada é a rede \textit{feed-forward}, aplicada de forma independente a cada posição da sequência, com o objetivo de transformar e enriquecer as representações vetoriais geradas pela etapa anterior.
-    
-        Após cada subcamada, são aplicadas operações de normalização e conexões residuais, com a finalidade de estabilizar o treinamento e preservar informações importantes ao longo das camadas do modelo.
-    
-        Ao final do processamento pelo encoder, é gerado um conjunto de vetores de representações contextuais, no qual cada vetor está associado a um token da sequência de entrada. Esses vetores incorporam informações sobre o contexto global da sentença, incluindo relações entre palavras, e são posteriormente utilizados pelo decoder para a geração da tradução na língua de destino \cite{c4lab_transformer}.
 
+\subsection{Feed-Forward Neural Network}
+Redes neurais \textit{feed-forward} são modelos computacionais nos quais a
+informação flui em uma única direção, da entrada para a saída, sem a presença
+de ciclos ou realimentação. Essas redes são compostas por camadas de neurônios
+interconectados, nas quais cada conexão possui um peso associado, responsável
+por ajustar a influência dos dados ao longo do processamento.
 
-    \subsection{Decoder}
-    Decoder, ou decodificador, é o componente da arquitetura Transformer responsável por gerar a sequência de saída, ou seja, a tradução na língua de destino, com base nas representações contextuais produzidas pelo encoder.
+De forma geral, uma rede \textit{feed-forward} é estruturada em três tipos de
+camadas: camada de entrada, responsável por receber os dados, camadas ocultas,
+responsáveis pelo processamento das informações por meio de transformações não
+lineares, e camada de saída, que produz o resultado final do
+modelo.\cite{sazli2006brief}
 
-    Assim como o encoder, o decoder é composto por múltiplos blocos empilhados, sendo cada bloco formado por três subcamadas principais: \textit{Masked Self-Attention}, \textit{Cross-Attention} (atenção sobre o encoder) e uma rede \textit{feed-forward}.
+No contexto da arquitetura Transformer, as redes \textit{feed-forward} são
+aplicadas de forma independente a cada posição da sequência, após o mecanismo
+de atenção. Seu principal objetivo é transformar e refinar as representações
+vetoriais geradas pelas camadas de atenção, contribuindo para a modelagem de
+relações mais complexas entre os elementos da
+sequência.\cite{c4lab_transformer}
 
-    A subcamada de \textit{Masked Self-Attention} aplica o mecanismo de atenção sobre a própria sequência de saída, porém com uma máscara que impede o modelo de acessar tokens futuros. Dessa forma, a geração ocorre de maneira autoregressiva, considerando apenas os tokens já produzidos até o momento, o que garante coerência na construção da tradução.
-
-    A subcamada de \textit{Cross-Attention} permite que o decoder utilize as informações produzidas pelo encoder, estabelecendo relações entre os tokens da sequência de saída e os tokens da sequência de entrada. Esse mecanismo é essencial para alinhar corretamente a tradução com o contexto da frase original.
-
-    Além disso, o mecanismo de atenção utilizado é do tipo \textit{multi-head attention}, que realiza múltiplas operações de atenção em paralelo, permitindo ao modelo capturar diferentes tipos de relações entre os elementos da sequência.
-
-    Por fim, a camada \textit{feed-forward} é aplicada com o objetivo de transformar e refinar as representações geradas, contribuindo para a produção de uma saída mais consistente e contextualizada.
-
-    Durante o processo de geração, o decoder produz a tradução de forma iterativa, gerando um token por vez. A cada etapa, o token gerado é realimentado como entrada para o próprio decoder, juntamente com as representações do encoder, até que um token especial de término seja produzido, indicando o fim da tradução \cite{c4lab_transformer}.
-    
-    \subsection{Feed-Forward Neural Network}
-    Redes neurais \textit{feed-forward} são modelos computacionais nos quais a informação flui em uma única direção, da entrada para a saída, sem a presença de ciclos ou realimentação. Essas redes são compostas por camadas de neurônios interconectados, nas quais cada conexão possui um peso associado, responsável por ajustar a influência dos dados ao longo do processamento.
-
-    De forma geral, uma rede \textit{feed-forward} é estruturada em três tipos de camadas: camada de entrada, responsável por receber os dados, camadas ocultas, responsáveis pelo processamento das informações por meio de transformações não lineares, e camada de saída, que produz o resultado final do modelo.\cite{sazli2006brief}
-
-    No contexto da arquitetura Transformer, as redes \textit{feed-forward} são aplicadas de forma independente a cada posição da sequência, após o mecanismo de atenção. Seu principal objetivo é transformar e refinar as representações vetoriais geradas pelas camadas de atenção, contribuindo para a modelagem de relações mais complexas entre os elementos da sequência.\cite{c4lab_transformer}
-
-    A Figura \ref{fig:fig-feed-forward} ilustra um exemplo de rede neural \textit{feed-forward} com uma camada oculta.
-
+A Figura \ref{fig:fig-feed-forward} ilustra um exemplo de rede neural
+\textit{feed-forward} com uma camada oculta.
 
 \begin{figure}[H]
     \centering
@@ -228,12 +300,16 @@ A Figura \ref{fig:fig-positiona-encoding} ilustra o processo de aplicação do \
     \legend{Fonte: \cite{geeksforgeeks_fnn} adaptado}
 \end{figure}
 
+\subsection{Scaled Dot-Product Attention}
+No contexto da arquitetura Transformer, o mecanismo de atenção é implementado
+por meio da chamada \textit{Scaled Dot-Product Attention}. Esse mecanismo
+calcula a relevância entre diferentes elementos da sequência de entrada
+utilizando três componentes principais: consultas (\textit{queries}), chaves
+(\textit{keys}) e valores (\textit{values}).
 
-    \subsection{Scaled Dot-Product Attention}
-    No contexto da arquitetura Transformer, o mecanismo de atenção é implementado por meio da chamada \textit{Scaled Dot-Product Attention}. Esse mecanismo calcula a relevância entre diferentes elementos da sequência de entrada utilizando três componentes principais: consultas (\textit{queries}), chaves (\textit{keys}) e valores (\textit{values}).
-
-    A atenção é calculada por meio do produto escalar entre consultas e chaves, seguido de uma normalização utilizando a função softmax, conforme a equação \cite{DBLP:journals/corr/VaswaniSPUJGKP17}:
-
+A atenção é calculada por meio do produto escalar entre consultas e chaves,
+seguido de uma normalização utilizando a função softmax, conforme a equação
+\cite{DBLP:journals/corr/VaswaniSPUJGKP17}:
 
 \begin{equation}
     {Attention}(Q, K, V) = {softmax}\left( \frac{QK^T}{\sqrt{d_k}} \right)V
@@ -247,19 +323,258 @@ onde:
     \item \( V \): Representa o conteúdo atual ou significado de uma palavra atual. Onde cada palavra \( j \) possui também um vetor de valores \( v_j \). Uma vez que que a atenção entre \( Q_i \) e \( K_j \) é computado, este valor é utilizado para ajustar a relevância do vetor de valores correspondentes \( V_j \) \cite{ibm_attention_mechanism}.
 \end{itemize}
 
-O fator de escala \(\sqrt{d_k}\) é utilizado para evitar valores muito elevados no produto escalar, o que poderia prejudicar a estabilidade da função softmax.
+O fator de escala \(\sqrt{d_k}\) é utilizado para evitar valores muito elevados
+no produto escalar, o que poderia prejudicar a estabilidade da função softmax.
 
+\subsection{Multi-Head Attention}
+O mecanismo de \textit{multi-head attention} é uma extensão do mecanismo de
+atenção utilizado na arquitetura Transformer, cujo objetivo é permitir que o
+modelo capture diferentes tipos de relações entre os elementos de uma sequência
+de forma paralela.
 
-    \subsection{multi-head attention}
+Diferentemente da atenção simples, que realiza uma única projeção sobre as
+matrizes de consultas, chaves e valores, o \textit{multi-head attention}
+projeta essas matrizes múltiplas vezes em diferentes subespaços vetoriais. Cada
+uma dessas projeções é processada por um mecanismo de atenção independente,
+denominado \textit{head}.
+
+Essa abordagem permite que o modelo aprenda diferentes representações e
+relações entre os tokens, como dependências sintáticas e semânticas,
+contribuindo para uma compreensão mais rica do contexto da sequência
+\cite{liu2021multi}.
+
+A formulação matemática do mecanismo de \textit{multi-head attention} é dada
+por \cite{DBLP:journals/corr/VaswaniSPUJGKP17}:
+
+\begin{equation}
+    {MultiHead}(Q, K, V) = {Concat}({head}_1, \dots, {head}_h)W^O
+\end{equation}
+
+onde cada \textit{head} é definido como:
+
+\begin{equation}
+    {head}_i = {Attention}(QW_i^Q, KW_i^K, VW_i^V)
+\end{equation}
+
+Nesse contexto, \(W_i^Q\), \(W_i^K\) e \(W_i^V\) são matrizes de projeção
+aprendidas para cada \textit{head} de atenção, enquanto \(W^O\) é uma matriz
+responsável por combinar as saídas concatenadas das diferentes \textit{heads}
+\cite{DBLP:journals/corr/abs-2006-16362}.
+
+\subsection{Encoder}
+Encoder, ou codificador, é um dos principais componentes da arquitetura
+Transformer, responsável por receber a sequência de entrada já convertida em
+embeddings e enriquecida com informações de posição por meio do
+\textit{positional encoding}. Seu objetivo é transformar essa sequência em um
+conjunto de representações vetoriais contextuais, capazes de capturar relações
+semânticas relevantes entre os tokens.
+
+Cada bloco do encoder é composto por duas subcamadas principais. A primeira é o
+mecanismo de atenção (\textit{self-attention}), responsável por relacionar os
+tokens da sequência entre si, permitindo a captura de dependências de curto e
+longo alcance. A segunda subcamada é a rede \textit{feed-forward}, aplicada de
+forma independente a cada posição da sequência, com o objetivo de transformar e
+enriquecer as representações vetoriais geradas pela etapa anterior.
+
+Após cada subcamada, são aplicadas operações de normalização e conexões
+residuais, com a finalidade de estabilizar o treinamento e preservar
+informações importantes ao longo das camadas do modelo.
+
+Ao final do processamento pelo encoder, é gerado um conjunto de vetores de
+representações contextuais, no qual cada vetor está associado a um token da
+sequência de entrada. Esses vetores incorporam informações sobre o contexto
+global da sentença, incluindo relações entre palavras, e são posteriormente
+utilizados pelo decoder para a geração da tradução na língua de destino
+\cite{c4lab_transformer}.
+
+\subsection{Decoder}
+Decoder, ou decodificador, é o componente da arquitetura Transformer
+responsável por gerar a sequência de saída, ou seja, a tradução na língua de
+destino, com base nas representações contextuais produzidas pelo encoder.
+
+Assim como o encoder, o decoder é composto por múltiplos blocos empilhados,
+sendo cada bloco formado por três subcamadas principais: \textit{Masked
+    Self-Attention}, \textit{Cross-Attention} (atenção sobre o encoder) e uma rede
+\textit{feed-forward}.
+
+A subcamada de \textit{Masked Self-Attention} aplica o mecanismo de atenção
+sobre a própria sequência de saída, porém com uma máscara que impede o modelo
+de acessar tokens futuros. Dessa forma, a geração ocorre de maneira
+autoregressiva, considerando apenas os tokens já produzidos até o momento, o
+que garante coerência na construção da tradução.
+
+A subcamada de \textit{Cross-Attention} permite que o decoder utilize as
+informações produzidas pelo encoder, estabelecendo relações entre os tokens da
+sequência de saída e os tokens da sequência de entrada. Esse mecanismo é
+essencial para alinhar corretamente a tradução com o contexto da frase
+original.
+
+Além disso, o mecanismo de atenção utilizado é do tipo \textit{multi-head
+    attention}, que realiza múltiplas operações de atenção em paralelo, permitindo
+ao modelo capturar diferentes tipos de relações entre os elementos da
+sequência.
+
+Por fim, a camada \textit{feed-forward} é aplicada com o objetivo de
+transformar e refinar as representações geradas, contribuindo para a produção
+de uma saída mais consistente e contextualizada.
+
+Durante o processo de geração, o decoder produz a tradução de forma iterativa,
+gerando um token por vez. A cada etapa, o token gerado é realimentado como
+entrada para o próprio decoder, juntamente com as representações do encoder,
+até que um token especial de término seja produzido, indicando o fim da
+tradução \cite{c4lab_transformer}.
 
 \section{Modelos de Tradução Open Source}
-    \subsection{MarianMT}
-    \subsection{M2M}
-    \subsection{NLLB}
+\subsection{MarianMT}
+MarianMT é um \textit{framework} de tradução automática neural desenvolvido por
+pesquisadores da Adam Mickiewicz University, em Poznań, e da University of
+Edinburgh. Implementado majoritariamente na linguagem C++, o MarianMT foi
+projetado com foco em eficiência computacional e baixo número de dependências
+externas.
+
+Diferentemente de modelos prontos para uso, o MarianMT consiste em uma
+plataforma para desenvolvimento, treinamento e implementação de modelos de
+tradução automática neural. Ele oferece suporte à construção de modelos
+baseados em diferentes arquiteturas, incluindo redes neurais recorrentes e,
+principalmente, modelos baseados na arquitetura Transformer.
+
+Uma das principais características do MarianMT é sua otimização para
+desempenho, permitindo o treinamento eficiente em múltiplas unidades de
+processamento, como CPUs e GPUs. Além disso, o framework possibilita a criação
+de modelos especializados para diferentes pares de línguas, a partir de bases
+de dados específicas \cite{mariannmt}.
+
+Entre os principais aspectos do MarianMT, destacam-se \cite{mariannmt}:
+
+\begin{itemize}
+    \item Implementação eficiente em C++, com foco em desempenho;
+    \item Suporte a treinamento e inferência em CPU e GPU;
+    \item Compatibilidade com arquiteturas modernas de tradução neural, como Transformer;
+    \item Código aberto sob licença permissiva (MIT).
+\end{itemize}
+
+\subsection{M2M-100}
+\label{section-M2M}
+M2M-100 (\textit{Many-to-Many}) é um modelo de tradução automática neural baseado na arquitetura transfomer e desenvolvido pela Meta, cujo objetivo é realizar traduções diretas entre múltiplos pares de línguas, mais precisamente entre 100 línguas, sem a necessidade de utilizar o inglês como língua intermediária.
+
+Em abordagens tradicionais, quando a língua de origem ou destino não envolve o
+inglês, é comum a utilização de uma estratégia intermediária, na qual a
+tradução é realizada inicialmente para o inglês e, posteriormente, convertida
+para a língua de destino. Essa abordagem é frequentemente adotada devido à
+maior disponibilidade de dados de treinamento em inglês.
+
+O modelo M2M-100 foi proposto para superar essa limitação, permitindo traduções
+diretas entre diferentes línguas. Para isso, o modelo foi treinado em uma
+grande base de dados multilíngue, construída com o objetivo de abranger uma
+ampla variedade de pares linguísticos.
+
+Além disso, foram utilizadas estratégias para melhorar a qualidade dos dados,
+incluindo o agrupamento de línguas com base em similaridades linguísticas,
+geográficas e culturais. Essas técnicas contribuíram para a geração de
+traduções mais consistentes e contextualizadas, especialmente para pares de
+línguas com menor disponibilidade de dados.
+
+O desenvolvimento do M2M-100 atende à necessidade de plataformas globais, como
+as aplicações da Meta, de oferecer suporte à comunicação entre usuários de
+diferentes idiomas com traduções de alta qualidade \cite{fan2020m2m100}.
+
+\subsection{NLLB}
+NLLB (\textit{No Language Left Behind}) é um modelo de tradução automática
+neural baseado na arquitetura Transformer, desenvolvido pela Meta, com o
+objetivo de realizar traduções de alta qualidade entre um grande número de
+línguas, incluindo línguas com poucos recursos disponíveis.
+
+Diferentemente do modelo M2M-100, apresentado na Seção \ref{section-M2M}, o
+NLLB representa uma evolução significativa, sendo projetado para suportar mais
+de 200 línguas, com foco especial na melhoria da qualidade de tradução para
+línguas de baixo recurso (\textit{low-resource languages}).
+
+Um dos principais desafios enfrentados no desenvolvimento do NLLB está
+relacionado à escassez de dados paralelos para determinadas línguas. Para
+contornar esse problema, foram utilizadas estratégias de construção e curadoria
+de bases de dados multilíngues em larga escala, incluindo a coleta de textos de
+diversas fontes, como entrevistas com nativos da língua e o uso de técnicas de
+filtragem para garantir maior qualidade dos dados.
+
+Além disso, o treinamento do modelo envolveu o uso de técnicas avançadas de
+otimização e regularização, com o objetivo de melhorar a generalização e
+reduzir problemas como o \textit{overfitting}, especialmente em cenários com
+dados limitados \cite{nllbteam2022languageleftbehindscaling}
 
 \section{Métricas de Avaliação}
-    \subsection{BLEU}
-    \subsection{BERTScore}
-    \subsection{chrF}
+\subsection{BLEU}
 
-\section{Eficiência Computacional}
+
+A métrica BLEU (\textit{Bilingual Evaluation Understudy}) é um método automático utilizado para avaliação de traduções automáticas. Trata-se de uma métrica independente de linguagem, cujo objetivo é medir o grau de similaridade entre uma tradução gerada automaticamente e uma ou mais traduções de referência produzidas por humanos.
+
+A ideia central da métrica BLEU é que traduções automáticas de maior qualidade tendem a apresentar maior sobreposição com traduções humanas de referência. Dessa forma, quanto maior a similaridade entre a tradução gerada e a tradução de referência, maior será o valor da métrica BLEU.
+
+O valor da métrica BLEU varia no intervalo de 0 a 1, onde valores mais próximos de 1 indicam maior similaridade com a tradução de referência, enquanto valores próximos de 0 indicam baixa similaridade \cite{papineni2002bleu}.
+
+A formulação matemática da métrica BLEU é definida como:
+
+\begin{align*}
+    \text{BP}   & =
+    \begin{cases}
+        1           & \text{if } c > r    \\
+        e^{(1-r/c)} & \text{if } c \leq r
+    \end{cases} .                                                 \\
+    \text{Então,}                                                                      \\
+    \text{BLEU} & = \text{BP} \cdot \exp \left( \sum_{n=1}^{N} w_n \log p_n \right) .
+\end{align*}
+
+Onde:
+
+\begin{itemize}
+    \item \(c\): comprimento da tradução gerada;
+    \item \(r\): comprimento da tradução de referência;
+    \item \(w_n\): pesos associados a cada ordem de n-grama, tais que \( \sum w_n = 1 \);
+    \item \(p_n\): precisão modificada de n-gramas.
+\end{itemize}
+
+\subsection{BERTScore}
+    BERTScore é uma métrica automática utilizada para avaliação de textos gerados por modelos de processamento de linguagem natural, incluindo tarefas de tradução automática.
+
+    Diferentemente de métricas baseadas em correspondência exata de n-gramas, como o BLEU, o BERTScore avalia a similaridade entre uma sentença gerada e uma sentença de referência por meio de representações vetoriais contextuais (\textit{embeddings}) obtidas a partir de modelos pré-treinados, como o BERT.
+
+    O cálculo do BERTScore é realizado por meio da comparação entre os embeddings de cada token da sentença gerada e os embeddings dos tokens da sentença de referência. Para cada token, é calculada uma medida de similaridade (geralmente baseada em cosseno), permitindo capturar relações semânticas mesmo quando não há correspondência exata entre as palavras.
+
+    A avaliação por meio do BERTScore é composta pelas métricas de precisão, revocação e F1-score.
+
+    Onde:
+
+\begin{itemize}
+    \item Precisão: considera a sentença gerada pelo modelo e mede o quanto os tokens gerados estão semanticamente alinhados com a sentença de referência;
+    
+    \item Revocação: considera a sentença de referência e avalia o quanto seu conteúdo está presente na sentença gerada pelo modelo;
+    
+    \item F1-score: combina precisão e revocação em um único valor, representando um equilíbrio entre a cobertura do conteúdo da referência e a qualidade da correspondência semântica.
+\end{itemize}
+
+    O valor do F1-score é frequentemente utilizado como resultado principal da métrica BERTScore, sendo que valores mais elevados indicam maior similaridade semântica entre a sentença gerada e a sentença de referência \cite{zhang2019bertscore}.
+
+
+\subsection{chrF}
+    ChrF (\textit{CHaracter n-gram F-score}) é uma técnica utilizada para avaliação automática de modelos de tradução, baseada na comparação de n-gramas de caracteres entre a sentença gerada e a sentença de referência \cite{popovic2015chrf}.
+
+    Diferentemente de métricas como o BLEU, que operam no nível de palavras, o chrF realiza a comparação no nível de caracteres, permitindo maior sensibilidade a variações morfológicas e flexionais presentes nas línguas naturais.
+
+    O cálculo da métrica chrF baseia-se na combinação de precisão e revocação de n-gramas de caracteres, resultando em uma medida do tipo F-score. Essa abordagem permite capturar similaridades entre palavras mesmo quando há pequenas variações, como flexões ou erros parciais na tradução \cite{emergentmind2026chrf}.
+
+
+    A formulação matemática da métrica chrF é definida como \cite{popovic2015chrf}:
+    
+    \begin{equation}
+    \text{CHRF}\beta = (1 + \beta^2) \frac{\text{CHRP} \cdot \text{CHRR}}{\beta^2 \cdot \text{CHRP} + \text{CHRR}}
+    \end{equation}
+
+onde:
+
+\begin{itemize}
+    \item \(\text{chrP}\): precisão de n-gramas de caracteres, representando a proporção de n-gramas presentes na sentença gerada que também aparecem na referência;
+    
+    \item \(\text{chrR}\): revocação de n-gramas de caracteres, representando a proporção de n-gramas da referência que são recuperados pela sentença gerada;
+    
+    \item \(\beta\): parâmetro que controla a importância relativa entre precisão e revocação. Quando \(\beta = 1\), ambas possuem o mesmo peso.
+\end{itemize}
+
