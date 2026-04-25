@@ -559,7 +559,8 @@ Onde:
 
     Diferentemente de métricas como o BLEU, que operam no nível de palavras, o chrF realiza a comparação no nível de caracteres, permitindo maior sensibilidade a variações morfológicas e flexionais presentes nas línguas naturais.
 
-    O cálculo da métrica chrF baseia-se na combinação de precisão e revocação de n-gramas de caracteres, resultando em uma medida do tipo F-score. Essa abordagem permite capturar similaridades entre palavras mesmo quando há pequenas variações, como flexões ou erros parciais na tradução \cite{emergentmind2026chrf}.
+    O cálculo da métrica chrF baseia-se na combinação de precisão e revocação de n-gramas de caracteres, resultando em uma medida do tipo F-score. Essa abordagem permite capturar similaridades entre palavras mesmo quando há pequenas variações, como flexões ou erros parciais na tradução 
+    \cite{emergentmind2026chrf}.
 
 
     A formulação matemática da métrica chrF é definida como \cite{popovic2015chrf}:
@@ -577,4 +578,20 @@ onde:
     
     \item \(\beta\): parâmetro que controla a importância relativa entre precisão e revocação. Quando \(\beta = 1\), ambas possuem o mesmo peso.
 \end{itemize}
+
+\section{Eficiência Computacional}
+Eficiência computacional refere-se à capacidade de um algoritmo, programa ou sistema de computador de realizar uma determinada tarefa utilizando a menor quantidade possível de recursos 
+\cite{duenha_apostila_arq}.
+
+Entre os principais recursos utilizados na avaliação da eficiência computacional, destacam-se:
+
+\begin{itemize}
+    \item Tempo de execução: corresponde ao tempo necessário para que um programa execute uma tarefa específica. Esse tempo pode ser interpretado como o número de operações primitivas ou passos realizados pelo algoritmo para uma determinada entrada;
+    
+    \item Consumo de recursos computacionais: envolve a quantidade de memória RAM, uso de CPU e armazenamento em disco necessários para a execução do algoritmo ou sistema;
+    
+    \item Análise assintótica: geralmente expressa por meio da notação Big O, descreve como o tempo de execução ou o uso de recursos cresce em função do tamanho da entrada, especialmente quando esse tamanho tende ao infinito.
+\end{itemize}
+
+
 
