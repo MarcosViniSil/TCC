@@ -60,8 +60,8 @@ Abaixo é apresentado um exemplo de cálculo da métrica BLEU utilizando a funç
 \begin{python}
 from nltk.translate.bleu_score import sentence_bleu, SmoothingFunction
 
-referencia = [['Uma', 'raposa', 'pula', 'sobre', 'o', 'cachorro', 'preguicoso', '.']]
-geradoPeloModelo = ['Uma', 'pula','raposa', 'sobre', 'o', 'cachorro', 'preguicoso', ',']
+referencia = [['Uma', 'raposa', 'pula', 'sobre', 'o', 'cachorro', '.']]
+geradoPeloModelo = ['Uma', 'pula','raposa', 'sobre', 'o', 'cachorro', ',']
 
 smooth = SmoothingFunction().method1
 
@@ -130,9 +130,9 @@ A Tabela abaixo apresenta as especificações da máquina virtual utilizada nos 
 \centering
 \begin{tabular}{ |p{3cm}|p{3cm}|p{3cm}|p{3cm}| }
 \hline
-\textbf{Memória RAM} & \textbf{Núcleos (vCPU)} & \textbf{Transferência de dados} & \textbf{Armazenamento} \\
+\multicolumn{1}{|p{3cm}|}{\centering\textbf{Memória RAM}} & \multicolumn{1}{p{3cm}|}{\centering\textbf{Núcleos (vCPU)}} & \multicolumn{1}{p{3cm}|}{\centering\textbf{Transferência de dados}} & \multicolumn{1}{p{3cm}|}{\centering\textbf{Armazenamento}} \\
 \hline
-16 GB & 8 vCPUs & 6 TB & 100 GB \\
+\multicolumn{1}{|p{3cm}|}{\centering 16 GB} & \multicolumn{1}{p{3cm}|}{\centering 8 vCPUs} & \multicolumn{1}{p{3cm}|}{\centering 6 TB} & \multicolumn{1}{p{3cm}|}{\centering 100 GB} \\
 \hline
 \end{tabular}
 \caption{Especificações da máquina virtual utilizada}
@@ -145,6 +145,63 @@ Cabe destacar que, por se tratar de um ambiente virtualizado, informações deta
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth, keepaspectratio]{Imagens/procedure.pdf}    \caption{\label{fig:procedimento} Procedimento}
+    \includegraphics[height=0.7\textwidth]{Imagens/procedure-general.pdf}    \caption{\label{fig:procedimento} Procedimento}
     \legend{Fonte: autor}
 \end{figure}
+
+\section{Desempenho Computacional}
+
+Nesta seção são descritas as métricas e ferramentas utilizadas para avaliação da eficiência computacional dos modelos de tradução, considerando principalmente o uso de CPU, tempo de execução e consumo de memória RAM.
+
+\subsection{Uso de CPU e Tempo de Execução}
+
+Neste experimento, serão considerados dois indicadores principais relacionados à CPU: o tempo médio de execução e o uso médio de CPU durante a tarefa de tradução.
+
+Para a medição do tempo de execução, será utilizada a ferramenta de linha de comando \textit{hyperfine}. Essa ferramenta é amplamente utilizada para a realização de benchmarks, permitindo medir o tempo total, média e desvio padrão de execução de um programa ao longo de múltiplas execuções.
+
+Abaixo é apresentado um exemplo de uso da ferramenta \textit{hyperfine}:
+
+\begin{listing}
+\begin{python}
+hyperfine 'python3 script.py'
+\end{python}
+\caption{Exemplo de uso da ferramenta \textit{hyperfine}}
+\label{code:hyperfine}
+\end{listing}
+
+Para a medição do uso médio de CPU durante a execução dos modelos, será utilizada a ferramenta \textit{pidstat}, nativa de sistemas operacionais Linux. Essa ferramenta permite coletar estatísticas detalhadas sobre o uso de recursos por processos individuais.
+
+A seguir, um exemplo de utilização da ferramenta \textit{pidstat}:
+
+\begin{listing}
+\begin{python}
+pidstat -u -e python3 test.py
+\end{python}
+\caption{Exemplo de uso da ferramenta \textit{pidstat}}
+\label{code:pidstat}
+\end{listing}
+
+As principais flags utilizadas são:
+
+\begin{itemize}
+    \item \textbf{-u}: exibe estatísticas de utilização da CPU;
+    \item \textbf{-e}: executa o comando especificado e monitora seu consumo de recursos.
+\end{itemize}
+
+\subsection{Consumo de Memória RAM}
+
+Para a análise de memória RAM, serão considerados dois indicadores: o uso médio e o uso máximo (pico) durante a execução da tarefa de tradução. O uso médio de memória será obtido por meio da ferramenta \textit{pidstat}, utilizando a flag \textit{-r}, que permite monitorar o consumo de memória ao longo da execução do processo.
+
+Já o uso máximo de memória (pico) será medido utilizando a ferramenta \textit{/usr/bin/time}, também disponível em sistemas Linux. Essa ferramenta fornece informações detalhadas sobre a execução de programas, incluindo o consumo máximo de memória.
+
+Abaixo é apresentado um exemplo de uso da ferramenta \textit{time}:
+
+\begin{listing}
+\begin{python}
+/usr/bin/time -v python3 script.py
+\end{python}
+\caption{Exemplo de uso da ferramenta \textit{time}}
+\label{code:time}
+\end{listing}
+
+A flag \textit{-v} permite a exibição de informações detalhadas, incluindo o valor de memória máxima utilizada durante a execução do programa.
