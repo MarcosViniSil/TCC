@@ -25,13 +25,11 @@ Nesta seção são definidos os tipos de texto utilizados na avaliação dos mod
 Os textos foram organizados em quatro categorias, considerando o tamanho e o domínio do conteúdo, conforme descrito a seguir:
 
 \begin{itemize}
-    \item \textbf{Textos curtos}: textos com até 15 palavras de domínio geral;
+    \item \textbf{Textos curtos}: textos com até 15 palavras de domínio conversacional e informal;
     
-    \item \textbf{Textos longos}: textos com mais de 15 palavras de domínio geral;
+    \item \textbf{Textos longos}: textos com mais de 15 palavras de domínio conversacional e informal;
 
-    \item \textbf{Textos gerais}: textos curtos e longos de domínio geral, incluindo conversas cotidianas, diálogos e conteúdos sem especialização técnica, obtidos através de bases de dados públicas;
-
-    \item \textbf{Textos específicos}: textos curtos e longos associados a domínios especializados, como medicina, engenharia e nutrição, também obtidos a partir de bases de dados públicas.
+    \item \textbf{Textos específicos}: textos associados a domínios especializados, como medicina, engenharia, computação e nutrição, também obtidos a partir de bases de dados públicas.
 
 \end{itemize}
 
@@ -49,6 +47,10 @@ Essa função recebe como entrada uma ou mais sentenças de referência e a sent
 Além disso, será utilizado um método de suavização (\textit{smoothing}) para evitar valores nulos em casos de baixa sobreposição entre os n-gramas da sentença gerada e da referência.
 
 Abaixo é apresentado um exemplo de cálculo da métrica BLEU utilizando a função \textit{sentence\_bleu} da biblioteca NLTK:
+\\
+\\
+\\
+\\
 \\
 \\
 \\
@@ -141,14 +143,6 @@ A Tabela abaixo apresenta as especificações da máquina virtual utilizada nos 
 
 Cabe destacar que, por se tratar de um ambiente virtualizado, informações detalhadas sobre o hardware físico, como modelo do processador ou tipo de memória, não são explicitamente fornecidas pela plataforma. Isso ocorre porque a instância virtual pode ser alocada dinamicamente sobre diferentes máquinas físicas, dependendo da disponibilidade no momento da criação.
 
-\section{Procedimento de Execução}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[height=0.7\textwidth]{Imagens/procedure-general.pdf}    \caption{\label{fig:procedimento} Procedimento}
-    \legend{Fonte: autor}
-\end{figure}
-
 \section{Desempenho Computacional}
 
 Nesta seção são descritas as métricas e ferramentas utilizadas para avaliação da eficiência computacional dos modelos de tradução, considerando principalmente o uso de CPU, tempo de execução e consumo de memória RAM.
@@ -205,3 +199,117 @@ Abaixo é apresentado um exemplo de uso da ferramenta \textit{time}:
 \end{listing}
 
 A flag \textit{-v} permite a exibição de informações detalhadas, incluindo o valor de memória máxima utilizada durante a execução do programa.
+
+\section{Base de Dados}
+
+Esta seção apresenta as bases de dados utilizadas nos experimentos de avaliação dos modelos de tradução automática.
+
+\subsection{Textos Conversacionais e Informais}
+
+Para a composição da base de textos conversacionais e informais, será utilizado o repositório OPUS (\textit{Open Parallel Corpus}), mais especificamente o conjunto de dados \textit{OpenSubtitles v2024}, contendo pares de tradução entre inglês e português brasileiro.
+
+Essa base é composta majoritariamente por diálogos extraídos de legendas de filmes e séries, sendo adequada para representar linguagem informal e conversacional.
+
+A base de dados pode ser acessada por meio do seguinte \href{https://opus.nlpl.eu/datasets/OpenSubtitles?pair=en&pt-BR}{link}.
+
+A Tabela \ref{tab:OpenSubtitlesv2024} apresenta exemplos de pares de frases presentes na base de dados.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{ |>{\centering\arraybackslash}p{6cm}|>{\centering\arraybackslash}p{6cm}| }
+\hline
+\textbf{Frase em inglês} & \textbf{Tradução para português brasileiro} \\
+\hline
+Did you do this, Dr. Ivins? & Você fez isso, Dr. Ivins? \\
+\hline
+Hello, mother. Hello, Bruce. & Olá, mãe. Olá, Bruce. \\
+\hline
+Hello, papa. What are you doing? & Olá, papai. O que você está fazendo? \\
+\hline
+\end{tabular}
+\caption{Exemplo de pares de tradução da base OpenSubtitles v2024}
+\label{tab:OpenSubtitlesv2024}
+\end{table}
+
+\subsection{Textos Específicos}
+
+Para a avaliação em textos de domínio específico, serão utilizadas bases de dados do repositório OPUS com conteúdos técnicos. Foram selecionados os conjuntos \textit{MDN Web Docs}, referente à documentação de tecnologias web mantida pela organização Mozilla, e \textit{PHP}, contendo documentação da linguagem de programação PHP.
+
+As bases podem ser acessadas por meio do seguinte \href{https://opus.nlpl.eu/corpora-search/en&pt-BR}{link}.
+
+A Tabela \ref{tab:MDNwebdocs} apresenta exemplos de pares de frases da base \textit{MDN Web Docs}:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{  |>{\centering\arraybackslash}p{6cm}|>{\centering\arraybackslash}p{6cm}| }
+\hline
+\textbf{Frase em inglês} & \textbf{Tradução para português brasileiro} \\
+\hline
+Present, accept, interpret, calculate, repeat & Apresentar, aceitar, interpretar, calcular, repetir \\
+\hline
+The specifics depend on the game. & As especificidades dependem do jogo. \\
+\hline
+Some games drive this cycle by user input. & Alguns jogos guiam este ciclo pela entrada do usuário. \\
+\hline
+\end{tabular}
+\caption{Exemplo de pares de tradução da base MDN Web Docs}
+\label{tab:MDNwebdocs}
+\end{table}
+
+A Tabela \ref{tab:PHP} apresenta exemplos de pares de frases da base \textit{PHP}:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{  |>{\centering\arraybackslash}p{6cm}|>{\centering\arraybackslash}p{6cm}| }
+\hline
+\textbf{Frase em inglês} & \textbf{Tradução para português brasileiro} \\
+\hline
+The documentation is stored in the phpdoc module. & A documentação é armazenada no módulo phpdoc. \\
+\hline
+How to help improve the documentation & Como ajudar a melhorar a documentação \\
+\hline
+Classify the bug as "Documentation Problem". & Classifique o problema como "Documentation Problem". \\
+\hline
+\end{tabular}
+\caption{Exemplo de pares de tradução da base PHP}
+\label{tab:PHP}
+\end{table}
+
+
+\section{Procedimento de Execução}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=0.7\textwidth]{Imagens/process.pdf}    \caption{\label{fig:procedimento} Procedimento}
+    \legend{Fonte: autor}
+\end{figure}
+
+\section{Análise dos dados}
+
+Esta seção tem como objetivo descrever os procedimentos adotados para a análise dos dados coletados a partir dos experimentos de tradução automática. A análise considera tanto a qualidade das traduções geradas quanto o desempenho computacional dos modelos avaliados.
+
+\subsection{Comparação entre modelos}
+
+A comparação entre os modelos de tradução será realizada a partir da utilização de um mesmo conjunto de entradas, composto por pares de sentenças paralelas, sendo o inglês a língua de origem e o português brasileiro a língua de destino. Cada modelo receberá exatamente as mesmas sentenças de entrada, a fim de garantir a comparabilidade dos resultados.
+
+Para cada sentença de entrada, será gerada uma tradução por cada modelo avaliado. As saídas produzidas serão então comparadas com as respectivas traduções de referência por meio das métricas BLEU, BERTScore e chrF. Além disso, serão coletadas métricas relacionadas ao desempenho computacional, incluindo uso de memória RAM, utilização de CPU e tempo de execução durante o processo de inferência.
+
+\subsection{Comparação entre tipos de texto}
+
+A análise também considera o impacto das características dos textos de entrada no desempenho dos modelos. Para isso, os dados serão organizados em duas dimensões principais: tamanho do texto e domínio do conteúdo.
+
+Em relação ao tamanho, as sentenças serão classificadas em categorias previamente definidas, como textos curtos e textos longos, com base no número de palavras ou tokens. Já em relação ao domínio, os textos serão agrupados em categorias distintas, como textos conversacionais e textos técnicos, sendo estes últimos compostos por conteúdos relacionados à linguagem de programação PHP e à documentação web da fundação Mozilla.
+
+Para cada categoria, um conjunto equivalente de sentenças será selecionado e submetido a todos os modelos avaliados. As métricas de qualidade (BLEU, BERTScore e chrF) e de desempenho computacional serão calculadas individualmente para cada categoria.
+
+Os resultados serão analisados de forma comparativa, por meio de tabelas e representações gráficas, permitindo observar o comportamento dos modelos em diferentes cenários.
+
+\subsection{Correlação entre métricas}
+
+Além da análise individual das métricas, este trabalho também investiga a relação entre elas. As métricas BLEU, BERTScore e chrF possuem fundamentos distintos: enquanto o BLEU é baseado na sobreposição de n-gramas, o BERTScore considera similaridade semântica por meio de representações vetoriais, e o chrF avalia correspondências em nível de caracteres. Dessa forma, é esperado que cada métrica capture diferentes aspectos da qualidade da tradução.
+
+Para analisar a relação entre essas métricas, será realizada uma análise de correlação estatística entre seus valores, considerando os resultados obtidos para todas as sentenças e modelos avaliados. Essa análise tem como objetivo identificar o grau de concordância entre as métricas, bem como possíveis divergências em suas avaliações.
+
+
+
+
