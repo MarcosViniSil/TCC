@@ -31,7 +31,7 @@ ao final de uma tradução entre línguas
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=.70\textwidth]{Imagens/tokenizer-referncial-teorico.pdf}
+    \includegraphics[width=.70\textwidth]{Imagens/tokenizer-referncial-teorico_compressed.pdf}
 
     \caption{\label{fig:tokenizer-rt}Tokenização de uma frase em português}
 
@@ -97,7 +97,7 @@ probabilidades associada a cada elemento de entrada.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=.90\textwidth]{Imagens/softmax-1-rt.pdf}
+    \includegraphics[width=.90\textwidth]{Imagens/softmax-1-rt_compressed.pdf}
     \caption{\label{fig:softmax1-rt}Conversão de pontuações em probabilidades}
     \legend{Fonte: \cite{franke2023softmax} adaptada pelo autor}
 \end{figure}
@@ -111,7 +111,7 @@ resultados. A Figura \ref{fig:softmax2-rt} ilustra essa propriedade
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=.70\textwidth]{Imagens/softmax2-rt.pdf}
+    \includegraphics[width=.70\textwidth]{Imagens/softmax2-rt_compressed.pdf}
     \caption{\label{fig:softmax2-rt}Propriedade de normalização da função softmax}
     \legend{Fonte: \cite{franke2023softmax}}
 \end{figure}
@@ -175,7 +175,7 @@ captura de relações entre palavras da língua de origem e da língua de destin
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=.70\textwidth]{Imagens/attention-rt-1.pdf}
+    \includegraphics[width=.70\textwidth]{Imagens/attention-rt-1_compressed.pdf}
     \caption{\label{fig:attention-1-rt}Tradução sem a utilização de um mecanismo de atenção}
     \legend{Fonte: \cite{raschka2023selfattention}}
 \end{figure}
@@ -186,7 +186,7 @@ palavras, resultando em traduções mais coerentes e contextualizadas.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=.70\textwidth]{Imagens/attention-rt-2.pdf}
+    \includegraphics[width=.70\textwidth]{Imagens/attention-rt-2_compressed.pdf}
     \caption{\label{fig:attention-2-rt}Tradução com a utilização de um mecanismo de atenção}
     \legend{Fonte: \cite{raschka2023selfattention}}
 \end{figure}
@@ -211,11 +211,11 @@ tradução automática, como o MarianMT, de código aberto, e os modelos M2M e
 NLLB, também desenvolvidos pela Meta. Esses modelos representam avanços
 significativos na tarefa de tradução entre línguas, todos baseados nos
 princípios introduzidos pela arquitetura Transformer
-\cite{c4lab2023transformer}.
+\cite{build-llms-from-scratch-book}.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[height=0.6\textwidth]{Imagens/transformer.pdf}
+    \includegraphics[height=0.6\textwidth]{Imagens/transformer_compressed.pdf}
     \caption{\label{fig:fig-architecture}Arquitetura transformer}
     \legend{Fonte: \cite{DBLP:journals/corr/VaswaniSPUJGKP17}}
 \end{figure}
@@ -264,7 +264,7 @@ A Figura \ref{fig:fig-positiona-encoding} ilustra o processo de aplicação do
 
 \begin{figure}[H]
     \centering
-    \includegraphics[height=0.6\textwidth]{Imagens/positional-encoding.pdf}
+    \includegraphics[height=0.6\textwidth]{Imagens/positional-encoding_compressed.pdf}
     \caption{\label{fig:fig-positiona-encoding} Exemplo de codificação posicional aplicada a uma sequência}
     \legend{Fonte: \cite{brownlee_positional_encoding} adaptado}
 \end{figure}
@@ -287,14 +287,14 @@ aplicadas de forma independente a cada posição da sequência, após o mecanism
 de atenção. Seu principal objetivo é transformar e refinar as representações
 vetoriais geradas pelas camadas de atenção, contribuindo para a modelagem de
 relações mais complexas entre os elementos da
-sequência.\cite{c4lab_transformer}
+sequência.\cite{gerber2025attentionneedimportancefeedforward}
 
 A Figura \ref{fig:fig-feed-forward} ilustra um exemplo de rede neural
 \textit{feed-forward} com uma camada oculta.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.6\textwidth]{Imagens/feed-forward.pdf}
+    \includegraphics[width=0.6\textwidth]{Imagens/feed-forward_compressed.pdf}
     \caption{\label{fig:fig-feed-forward} Rede neural feed-forward}
     \legend{Fonte: \cite{geeksforgeeks_fnn} adaptado}
 \end{figure}
@@ -384,7 +384,7 @@ representações contextuais, no qual cada vetor está associado a um token da
 sequência de entrada. Esses vetores incorporam informações sobre o contexto
 global da sentença, incluindo relações entre palavras, e são posteriormente
 utilizados pelo decoder para a geração da tradução na língua de destino
-\cite{c4lab_transformer}.
+\cite{build-llms-from-scratch-book}.
 
 \subsection{Decoder}
 Decoder, ou decodificador, é o componente da arquitetura Transformer
@@ -421,7 +421,7 @@ Durante o processo de geração, o decoder produz a tradução de forma iterativ
 gerando um token por vez. A cada etapa, o token gerado é realimentado como
 entrada para o próprio decoder, juntamente com as representações do encoder,
 até que um token especial de término seja produzido, indicando o fim da
-tradução \cite{c4lab_transformer}.
+tradução \cite{build-llms-from-scratch-book}.
 
 \section{Modelos de Tradução Open Source}
 \subsection{MarianMT}
