@@ -16,7 +16,7 @@ A Figura \ref{fig:rbmt-processo} ilustra o processo de tradução baseado em reg
 	\legend{Fonte: \cite{charoenpornsawat2002improving} adaptada para português}
 \end{figure}
 
-A tradução automática baseada em regras teve início na década de 1970, sendo considerada um marco na área de tradução automática e uma abordagem inicialmente promissora \cite{wiki:Rule-based_machine_translation}. No entanto, algumas características limitaram sua adoção em larga escala \cite{okpor2014machine}:
+A tradução automática baseada em regras teve início na década de 1970, sendo considerada um marco na área de tradução automática e uma abordagem inicialmente promissora \cite{wang2022progress}. No entanto, algumas características limitaram sua adoção em larga escala \cite{okpor2014machine}:
 
 \begin{itemize}
     \item Escassez de dicionários bilíngues de alta qualidade, sendo sua construção uma tarefa custosa;
@@ -49,7 +49,7 @@ A imagem abaixo exemplifica este processo de tradução baseado no modelo estat�
 	\legend{Fonte: \cite{lokalise_smt_2025} adaptada para português}
 \end{figure}
 
-É notável que traduções baseadas em estatística superaram traduções baseadas em regras, em qualidade e contexto, porém, os seguintes pontos podem ser destacados sobre traduções estatísticas \cite{wang2017neural}:
+É notável que traduções baseadas em estatística superaram traduções baseadas em regras, em qualidade e contexto, porém, os seguintes pontos podem ser destacados sobre traduções estatísticas \cite{okpor2014machine}:
 
 \begin{itemize}
     \item Criação de base de dados complexa;
@@ -64,13 +64,13 @@ Para contornar os problemas listados acima, um novo modelo foi proposto, o qual 
 \section{Tradução Automática Neural}
 \label{chap:NMT}
 
-A tradução automática neural, em sua essência, utiliza redes neurais artificiais (Artificial Neural Networks - ANN), cujo objetivo é simular, de forma simplificada, o funcionamento do cérebro humano. Em termos gerais, o sistema recebe uma entrada, neste caso, um texto na língua de origem, e por meio de módulos internos da rede neural, realiza a tradução para a língua de destino \cite{laratranslate2025neural}.
+A tradução automática neural, em sua essência, utiliza redes neurais artificiais (Artificial Neural Networks - ANN), cujo objetivo é simular, de forma simplificada, o funcionamento do cérebro humano. Em termos gerais, o sistema recebe uma entrada, neste caso, um texto na língua de origem, e por meio de módulos internos da rede neural, realiza a tradução para a língua de destino.
 
-O processo de tradução é realizado por meio de dois componentes principais: o codificador (encoder) e o decodificador (decoder) \cite{wang2022progress}.
+O processo de tradução é realizado por meio de dois componentes principais: o codificador (encoder) e o decodificador (decoder).
 
 O componente de codificação tem como objetivo mapear o texto de entrada em um vetor de valores reais de múltiplas dimensões. Esse vetor representa, de forma abstrata, informações relevantes necessárias para a realização da tradução. A partir dessa representação vetorial, o componente de decodificação utiliza essas informações para gerar o texto correspondente na língua de destino.
 
-De forma geral, o processo de tradução automática neural pode ser descrito pelas seguintes etapas \cite{laratranslate2025neural}:
+De forma geral, o processo de tradução automática neural pode ser descrito pelas seguintes etapas \cite{DBLP:journals/corr/abs-1709-07809}:
 
 \begin{itemize}
     \item Conversão das palavras em vetores numéricos;
@@ -88,19 +88,18 @@ A Figura \ref{fig:nmt-processo} ilustra o processo de tradução utilizando rede
 	\legend{Fonte: \cite{elaffendi2022beyond}}
 \end{figure}
 
-O uso da tradução automática neural (Neural Machine Translation – NMT) representou, por muitos anos, uma substituição às técnicas de tradução baseadas em métodos estatísticos. Com a utilização da NMT, tornou-se possível gerar traduções sem a necessidade de intervenção humana direta, baseando-se inteiramente em grandes bases de textos e suas respectivas traduções, abordagem conhecida como aprendizado fim a fim (end-to-end) \cite{laratranslate2025neural}. 
+O uso da tradução automática neural (Neural Machine Translation – NMT) representou, por muitos anos, uma substituição às técnicas de tradução baseadas em métodos estatísticos. Com a utilização da NMT, tornou-se possível gerar traduções sem a necessidade de intervenção humana direta, baseando-se inteiramente em grandes bases de textos e suas respectivas traduções, abordagem conhecida como aprendizado fim a fim (end-to-end) \cite{DBLP:journals/corr/abs-1709-07809}. 
 
 Essa abordagem possibilitou a geração de traduções com maior captura de contexto e maior naturalidade quando comparadas às traduções estatísticas e baseadas em regras, além de melhorar a modelagem das relações entre palavras em uma sentença, um dos principais desafios enfrentados pelas abordagens anteriores \cite{wang2017neural}. 
 
 Um marco importante na adoção da tradução automática neural foi a substituição dos modelos estatísticos pelo uso de NMT no Google Tradutor, realizada pela empresa Google em 2016 \cite{schuster2016zeroshot}, evidenciando uma mudança significativa na forma como sistemas de tradução eram desenvolvidos até então.
 
-Apesar dos avanços proporcionados pela tradução automática neural em relação aos métodos anteriores, ainda existem limitações associadas aos modelos baseados em componentes de codificação e decodificação. Dentre essas limitações, destacam-se \cite{laratranslate2025neural}:
+Apesar dos avanços proporcionados pela tradução automática neural em relação aos métodos anteriores, ainda existem limitações associadas aos modelos baseados em componentes de codificação e decodificação. Dentre essas limitações, destacam-se \cite{DBLP:journals/corr/abs-1709-07809,DBLP:journals/corr/VaswaniSPUJGKP17}:
 
 \begin{itemize}
-    \item Dificuldade na paralelização do processamento de sequências de entrada;
+    \item Dificuldade em geração de traduções que possuem grande diferença com os dados de treino
     \item Limitações no tratamento de dependências de longo alcance entre palavras;
-    \item Maior complexidade no processo de treinamento;
-    \item Qualidade inferior em determinados cenários de tradução.
+    \item Maior complexidade no processo de treinamento.
 \end{itemize}
 
 
