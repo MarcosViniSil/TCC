@@ -1,50 +1,50 @@
-Segundo \citeonline{gil2002elaborar}, a pesquisa experimental consiste na definição de um objeto de estudo, na seleção de variáveis capazes de influenciá-lo e na determinação de formas de controle e observação dos efeitos produzidos por essas variáveis. Com base nessa definição, o presente trabalho caracteriza-se como uma pesquisa de natureza experimental, uma vez que modelos de tradução automática neural baseados na arquitetura Transformer serão comparados e submetidos a diferentes cenários e bases de dados.
+Segundo \citeonline{gil2002elaborar}, a pesquisa experimental consistiu na definição de um objeto de estudo, na seleção de variáveis capazes de influenciá-lo e na determinação de formas de controle e observação dos efeitos produzidos por essas variáveis. Com base nessa definição, o presente trabalho caracterizou-se como uma pesquisa de natureza experimental, uma vez que modelos de tradução automática neural baseados na arquitetura Transformer foram comparados e submetidos a diferentes cenários e bases de dados.
 
-Além disso, de acordo com \citeonline{da2002apostila}, a pesquisa quantitativa utiliza linguagem matemática para descrever fenômenos e analisar relações entre variáveis. Nesse contexto, este trabalho também possui caráter quantitativo, pois os modelos serão avaliados por meio de métricas como BLEU, BERTScore e chrF, bem como por medidas de eficiência computacional, obtidas a partir de experimentos controlados.
+Além disso, de acordo com \citeonline{da2002apostila}, a pesquisa quantitativa utilizou linguagem matemática para descrever fenômenos e analisar relações entre variáveis. Nesse contexto, este trabalho também possuiu caráter quantitativo, pois os modelos foram avaliados por meio de métricas como BLEU, BERTScore e chrF, bem como por medidas de eficiência computacional, obtidas a partir de experimentos controlados.
 
 
 \section{Modelos}
 
-Nesta seção são descritas as principais características dos modelos selecionados para comparação na tarefa de tradução automática, incluindo informações como tamanho, finalidade e forma de acesso.
+Nesta seção foram descritas as principais características dos modelos selecionados para comparação na tarefa de tradução automática, incluindo informações como tamanho, finalidade e forma de acesso.
 
-A seguir, são apresentados os modelos utilizados neste trabalho, bem como suas respectivas configurações e locais para obtenção:
+A seguir, foram apresentados os modelos utilizados neste trabalho, bem como suas respectivas configurações e locais para obtenção:
 
 \begin{itemize}
-    \item \textbf{MarianMT}: O modelo utilizado será o \textit{opus-mt-tc-big-en-pt}, com aproximadamente 0,2 bilhões de parâmetros. Trata-se de um modelo específico para tradução do inglês para o português. O seguinte \href{https://huggingface.co/Helsinki-NLP/opus-mt-tc-big-en-pt}{link} direciona para a plataforma \textit{Hugging Face}, onde o modelo pode ser obtido para uso local.
+    \item \textbf{MarianMT}: O modelo utilizado foi o \textit{opus-mt-tc-big-en-pt}, com aproximadamente 0,2 bilhões de parâmetros. Tratou-se de um modelo específico para tradução do inglês para o português. O seguinte \href{https://huggingface.co/Helsinki-NLP/opus-mt-tc-big-en-pt}{link} direcionou para a plataforma \textit{Hugging Face}, onde o modelo pôde ser obtido para uso local.
 
-    \item \textbf{M2M-100}: O modelo utilizado será o \textit{m2m100\_418M}, com aproximadamente 0,4 bilhões de parâmetros. Diferentemente do MarianMT, este modelo não requer a seleção de um par específico de línguas, pois foi projetado para tradução direta entre múltiplos idiomas. O seguinte \href{https://huggingface.co/facebook/m2m100_418M}{link} redireciona para a plataforma \textit{Hugging Face}, onde o modelo pode ser obtido para uso local.
+    \item \textbf{M2M-100}: O modelo utilizado foi o \textit{m2m100\_418M}, com aproximadamente 0,4 bilhões de parâmetros. Diferentemente do MarianMT, esse modelo não requereu a seleção de um par específico de línguas, pois foi projetado para tradução direta entre múltiplos idiomas. O seguinte \href{https://huggingface.co/facebook/m2m100_418M}{link} redirecionou para a plataforma \textit{Hugging Face}, onde o modelo pôde ser obtido para uso local.
 
-    \item \textbf{NLLB}: O modelo utilizado será o \textit{nllb-200-distilled-600M}, com aproximadamente 0,6 bilhões de parâmetros. Assim como o M2M-100, este modelo permite tradução direta entre múltiplas línguas, sem a necessidade de uma língua intermediária. O seguinte \href{https://huggingface.co/facebook/nllb-200-distilled-600M}{link} redireciona para a plataforma \textit{Hugging Face}, onde o modelo pode ser obtido para uso local.
+    \item \textbf{NLLB}: O modelo utilizado foi o \textit{nllb-200-distilled-600M}, com aproximadamente 0,6 bilhões de parâmetros. Assim como o M2M-100, esse modelo permitiu tradução direta entre múltiplas línguas, sem a necessidade de uma língua intermediária. O seguinte \href{https://huggingface.co/facebook/nllb-200-distilled-600M}{link} redirecionou para a plataforma \textit{Hugging Face}, onde o modelo pôde ser obtido para uso local.
 
 \end{itemize}
 
 \section{Tipos de texto}
 \label{Text-type}
-Nesta seção são definidos os tipos de texto utilizados na avaliação dos modelos de tradução automática.
+Nesta seção foram definidos os tipos de texto utilizados na avaliação dos modelos de tradução automática.
 
-Os textos foram organizados em quatro categorias, considerando o tamanho e o domínio do conteúdo, conforme descrito a seguir:
+Os textos foram organizados em duas categorias, considerando o tamanho e o domínio do conteúdo, conforme descrito a seguir:
 
 \begin{itemize}
-    \item \textbf{Textos gerais}: textos de domínio conversacional e informal com média de 6 palavras por sentença;
+    \item \textbf{Textos gerais}: textos de domínio conversacional e informal, com média de 6 palavras por sentença;
 
-    \item \textbf{Textos específicos}: textos associados a domínios especializados, como a área de tecnologia da informação com média de 6 palavras por sentença.
+    \item \textbf{Textos específicos}: textos associados a domínios especializados, como a área de tecnologia da informação, com média de 6 palavras por sentença.
 
 \end{itemize}
 
 
 \section{Métricas de Avaliação}
 
-Nesta seção tem como objetivo apresentar as ferramentas utilizadas para o cálculo das métricas BLEU, BERTScore e chrF e avaliação das traduções geradas pelos modelos.
+Nesta seção foram apresentadas as ferramentas utilizadas para o cálculo das métricas BLEU, BERTScore e chrF e para a avaliação das traduções geradas pelos modelos.
 
 \subsection{BLEU}
 
-O cálculo da métrica BLEU, após a geração da tradução pelo modelo, será realizado utilizando a biblioteca da linguagem Python denominada NLTK (\textit{Natural Language Toolkit}). Essa biblioteca disponibiliza diversas funcionalidades voltadas ao processamento de linguagem natural, incluindo a função \textit{sentence\_bleu}, utilizada para calcular o valor da métrica BLEU a nível de sentença.
+O cálculo da métrica BLEU, após a geração da tradução pelo modelo, foi realizado utilizando a biblioteca da linguagem Python denominada NLTK (\textit{Natural Language Toolkit}). Essa biblioteca disponibilizou diversas funcionalidades voltadas ao processamento de linguagem natural, incluindo a função \textit{sentence\_bleu}, utilizada para calcular o valor da métrica BLEU em nível de sentença.
 
-Essa função recebe como entrada uma ou mais sentenças de referência e a sentença gerada pelo modelo, retornando um valor numérico que representa o grau de similaridade entre elas com base em n-gramas.
+Essa função recebeu como entrada uma ou mais sentenças de referência e a sentença gerada pelo modelo, retornando um valor numérico que representou o grau de similaridade entre elas com base em n-gramas.
 
-Além disso, será utilizado um método de suavização (\textit{smoothing}) para evitar valores nulos em casos de baixa sobreposição entre os n-gramas da sentença gerada e da referência.
+Além disso, foi utilizado um método de suavização (\textit{smoothing}) para evitar valores nulos em casos de baixa sobreposição entre os n-gramas da sentença gerada e da referência.
 
-Abaixo é apresentado um exemplo de cálculo da métrica BLEU utilizando a função \textit{sentence\_bleu} da biblioteca NLTK:
+Abaixo foi apresentado um exemplo de cálculo da métrica BLEU utilizando a função \textit{sentence\_bleu} da biblioteca NLTK:
 \\
 \\
 \\
@@ -73,11 +73,11 @@ print(sentence_bleu(referencia, geradoPeloModelo, smoothing_function=smooth))
 
 \subsection{BERTScore}
 
-O cálculo da métrica BERTScore será realizado utilizando a biblioteca da linguagem Python denominada \textit{bert-score}. Essa biblioteca permite calcular a similaridade entre sentenças por meio da comparação de \textit{embeddings} contextuais gerados a partir de modelos pré-treinados.
+O cálculo da métrica BERTScore foi realizado utilizando a biblioteca da linguagem Python denominada \textit{bert-score}. Essa biblioteca permitiu calcular a similaridade entre sentenças por meio da comparação de \textit{embeddings} contextuais gerados a partir de modelos pré-treinados.
 
-A função \textit{score} é responsável por receber como entrada a sentença gerada pelo modelo e a sentença de referência, retornando três medidas principais: precisão, revocação e F1-score.Para este trabalho, será utilizado o F1-score médio como medida final do BERTScore, por representar um equilíbrio entre precisão e revocação.
+A função \textit{score} foi responsável por receber como entrada a sentença gerada pelo modelo e a sentença de referência, retornando três medidas principais: precisão, revocação e F1-score. Para este trabalho, foi utilizado o F1-score médio como medida final do BERTScore, por representar um equilíbrio entre precisão e revocação.
 
-Abaixo é apresentado um exemplo de cálculo da métrica BERTScore utilizando a função \textit{score} da biblioteca \textit{bert-score}:
+Abaixo foi apresentado um exemplo de cálculo da métrica BERTScore utilizando a função \textit{score} da biblioteca \textit{bert-score}:
 
 \begin{listing}
 \begin{python}
@@ -92,17 +92,16 @@ print(F1_SCORE.mean())
 
 \end{python}
 \caption{Exemplo de cálculo da métrica BERTScore com a biblioteca bert-score}
-\label{code:bleu_example}
+\label{code:bertscore_example}
 \end{listing}
 
 \subsection{chrF}
 
-Para o cálculo da metrica chrF será realizada utilizada a biblioteca da linguagem python (\textit{sacrebleu}). Essa biblioteca possui funções que realizam o cálculo de métricas para avaliação de traduções automáticas, e dentre elas a função (\textit{sentence\_chrf}), cujo objetivo é realizar o cálculo da métrica chrF dado a sequência gerada pelo modelo e a sequência de referência.
+Para o cálculo da métrica chrF, foi utilizada a biblioteca da linguagem Python \textit{sacrebleu}. Essa biblioteca possuiu funções para o cálculo de métricas de avaliação de traduções automáticas, entre elas a função \textit{sentence\_chrf}, cujo objetivo foi calcular a métrica chrF a partir da sequência gerada pelo modelo e da sequência de referência.
 
+A função \textit{sentence\_chrf} recebeu dois argumentos: a sequência gerada pelo modelo e a sequência de referência. Como resposta, a função retornou um valor entre 0 e 100, indicando o resultado da métrica chrF.
 
-A função (\textit{sentence\_chrf}) recebe dois argumentos, o primeiro sendo a sequência gerada pelo modelo, já o segundo argumento, a sequência de referência. Como resposta, a função retorna um valor entre 0 e 100, indicando o valor da métrica chrF
-
-Abaixo é apresentado um exemplo de cálculo da métrica chrF utilizando a função \textit{sentence\_chrf} da biblioteca \textit{sacrebleu}:
+Abaixo foi apresentado um exemplo de cálculo da métrica chrF utilizando a função \textit{sentence\_chrf} da biblioteca \textit{sacrebleu}:
 \\
 \begin{listing}
 \begin{python}
@@ -117,12 +116,12 @@ print(chrf)
 
 \end{python}
 \caption{Exemplo de cálculo da métrica chrF com a biblioteca sacrebleu}
-\label{code:bleu_example}
+\label{code:chrf_example}
 \end{listing}
 
 \section{Ambiente Computacional}
 
-Com o objetivo de garantir um ambiente controlado e uniforme para a comparação entre os modelos de tradução, será utilizado um computador pessoal que não está mais em utilização, este sendo responsável pela execução de todos os testes a fim de garantir um ambiente justo entre os modelos propostos.
+Com o objetivo de garantir um ambiente controlado e uniforme para a comparação entre os modelos de tradução, foi utilizado um computador pessoal que não estava mais em utilização. Esse computador foi responsável pela execução de todos os testes, a fim de garantir condições equivalentes entre os modelos avaliados.
 
 A Tabela \ref{tab:ambiente_computacional} apresenta as especificações do hardware utilizado nos experimentos:
 
@@ -132,7 +131,7 @@ A Tabela \ref{tab:ambiente_computacional} apresenta as especificações do hardw
 \hline
 \multicolumn{1}{|p{3cm}|}{\centering\textbf{Memória RAM}} & \multicolumn{1}{p{3cm}|}{\centering\textbf{Processador}} & \multicolumn{1}{p{3cm}|}{\centering\textbf{Armazenamento}} & \multicolumn{1}{p{3cm}|}{\centering\textbf{Sistema operacional}} \\
 \hline
-\multicolumn{1}{|p{3cm}|}{\centering 16 GB DDR3} & \multicolumn{1}{p{3cm}|}{\centering i5 3470} & \multicolumn{1}{p{3cm}|}{\centering SSD 256 GB} & \multicolumn{1}{p{3cm}|}{\centering Ubuntu server 26.04} \\
+\multicolumn{1}{|p{3cm}|}{\centering 16 GB DDR3 1600MHZ} & \multicolumn{1}{p{3cm}|}{\centering i5 3470} & \multicolumn{1}{p{3cm}|}{\centering SSD 256 GB} & \multicolumn{1}{p{3cm}|}{\centering Debian 13(trixie)} \\
 \hline
 \end{tabular}
 \caption{Especificações do hardware utilizado}
@@ -141,68 +140,67 @@ A Tabela \ref{tab:ambiente_computacional} apresenta as especificações do hardw
 
 \section{Desempenho Computacional}
 
-Nesta seção são descritas as métricas e ferramentas utilizadas para avaliação da eficiência computacional dos modelos de tradução, considerando principalmente o uso de CPU, tempo de execução e consumo de memória RAM.
+Nesta seção foram descritas as métricas e ferramentas utilizadas para avaliação da eficiência computacional dos modelos de tradução, considerando principalmente o uso de CPU, o tempo de execução e o consumo de memória RAM.
 
-\subsection{Uso de CPU e Tempo de Execução}
+\subsection{Uso de CPU}
 
-Neste experimento, serão considerados dois indicadores principais relacionados à CPU: o tempo médio de execução e o uso médio de CPU durante a tarefa de tradução.
+Neste experimento, foram considerados três indicadores principais relacionados à CPU: o uso médio, o mínimo e o máximo durante a execução da tradução.
 
-Para a medição do tempo de execução, será utilizada a ferramenta de linha de comando \textit{hyperfine}. Essa ferramenta é amplamente utilizada para a realização de benchmarks, permitindo medir o tempo total, média e desvio padrão de execução de um programa ao longo de múltiplas execuções.
+Para essas medições, foi utilizada a biblioteca Python \textbf{psutil}, que possui diversas funções auxiliares na recuperação de dados de processos em execução. Abaixo foi apresentado um exemplo da utilização da função \textbf{cpu\_percent}, cujo objetivo foi coletar dados de utilização da CPU em um determinado intervalo de tempo.
 
-Abaixo é apresentado um exemplo de uso da ferramenta \textit{hyperfine}:
+Abaixo foi apresentado um exemplo de uso da ferramenta \textit{psutil}:
 
 \begin{listing}
 \begin{python}
-hyperfine 'python3 script.py'
+import psutil
+process = psutil.Process(os.getpid())
+samples = []
+while not stop_event.is_set():
+    cpu_usage = process.cpu_percent(interval=0.05)
+    samples.append(cpu_usage)
+
+average_usage = sum(samples) / len(samples) # uso médio
+max_usage = max(samples) # uso máximo
+min_usage = min(samples) # uso mínimo
+
 \end{python}
-\caption{Exemplo de uso da ferramenta \textit{hyperfine}}
+\caption{Exemplo de uso da ferramenta \textit{psutil} para verificação do uso de CPU}
 \label{code:hyperfine}
 \end{listing}
 
-Para a medição do uso médio de CPU durante a execução dos modelos, será utilizada a ferramenta \textit{pidstat}, nativa de sistemas operacionais Linux. Essa ferramenta permite coletar estatísticas detalhadas sobre o uso de recursos por processos individuais.
 
-A seguir, um exemplo de utilização da ferramenta \textit{pidstat}:
+\subsection{Memória RAM}
 
-\begin{listing}
-\begin{python}
-pidstat -u -e python3 test.py
-\end{python}
-\caption{Exemplo de uso da ferramenta \textit{pidstat}}
-\label{code:pidstat}
-\end{listing}
+Para a análise de memória RAM, foram considerados dois indicadores: o uso médio e o uso máximo (pico) durante a execução da tarefa de tradução. Ambas as métricas de memória foram obtidas por meio da ferramenta \textit{psutil}, assim como na verificação do uso de CPU.
 
-As principais flags utilizadas são:
+A memória residente do processo foi amostrada em intervalos regulares durante a execução da tradução. O uso médio foi calculado pela média das amostras coletadas, enquanto o pico de memória correspondeu ao maior valor observado. Como os modelos foram avaliados separadamente, cada execução foi iniciada em um novo processo, que carregou apenas o modelo em avaliação e foi encerrado ao final da tradução. Dessa forma, as amostras de memória de um modelo não foram acumuladas nas medições dos demais modelos.
 
-\begin{itemize}
-    \item \textbf{-u}: exibe estatísticas de utilização da CPU;
-    \item \textbf{-e}: executa o comando especificado e monitora seu consumo de recursos.
-\end{itemize}
-
-\subsection{Consumo de Memória RAM}
-
-Para a análise de memória RAM, serão considerados dois indicadores: o uso médio e o uso máximo (pico) durante a execução da tarefa de tradução. O uso médio de memória será obtido por meio da ferramenta \textit{pidstat}, utilizando a flag \textit{-r}, que permite monitorar o consumo de memória ao longo da execução do processo.
-
-Já o uso máximo de memória (pico) será medido utilizando a ferramenta \textit{/usr/bin/time}, também disponível em sistemas Linux. Essa ferramenta fornece informações detalhadas sobre a execução de programas, incluindo o consumo máximo de memória.
-
-Abaixo é apresentado um exemplo de uso da ferramenta \textit{time}:
+Abaixo foi apresentado um exemplo de uso da ferramenta \textit{psutil} para a medição da memória residente do processo:
 
 \begin{listing}
 \begin{python}
-/usr/bin/time -v python3 script.py
-\end{python}
-\caption{Exemplo de uso da ferramenta \textit{time}}
-\label{code:time}
-\end{listing}
+import psutil
+process = psutil.Process(os.getpid())
+samples = []
+while not stop_event.is_set():
+    memory_usage = process.memory_info().rss
+    samples.append(memory_usage)
 
-A flag \textit{-v} permite a exibição de informações detalhadas, incluindo o valor de memória máxima utilizada durante a execução do programa.
+memory_average = sum(samples) / len(samples) # uso médio
+memory_peak = max(samples) # pico de memória utilizada
+
+\end{python}
+\caption{Exemplo de uso da ferramenta \textit{psutil} para verificação de uso de memória RAM}
+\label{code:memory}
+\end{listing}
 
 \section{Base de Dados}
 \label{Database}
-Esta seção apresenta as bases de dados utilizadas nos experimentos de avaliação dos modelos de tradução automática.
+Esta seção apresentou as bases de dados utilizadas nos experimentos de avaliação dos modelos de tradução automática.
 
 \subsection{Textos Conversacionais e Informais}
 
-Para a composição da base de textos conversacionais e informais, será utilizado o repositório OPUS (\textit{Open Parallel Corpus}), mais especificamente o conjunto de dados \textit{OpenSubtitles v2024}, contendo pares de tradução entre inglês e português brasileiro.
+Para a composição da base de textos conversacionais e informais, foi utilizado o repositório OPUS (\textit{Open Parallel Corpus}), mais especificamente o conjunto de dados \textit{OpenSubtitles v2024}, contendo pares de tradução entre inglês e português brasileiro.
 
 Essa base é composta majoritariamente por diálogos extraídos de legendas de filmes e séries, sendo adequada para representar linguagem informal e conversacional.
 
@@ -227,9 +225,11 @@ Hello, papa. What are you doing? & Olá, papai. O que você está fazendo? \\
 \label{tab:OpenSubtitlesv2024}
 \end{table}
 
+
+
 \subsection{Textos Específicos}
 
-Para a avaliação em textos de domínio específico, serão utilizadas bases de dados do repositório OPUS com conteúdos técnicos. Foram selecionados os conjuntos \textit{MDN Web Docs}, referente à documentação de tecnologias web mantida pela organização Mozilla, e \textit{PHP}, contendo documentação da linguagem de programação PHP.
+Para a avaliação em textos de domínio específico, foram utilizadas bases de dados do repositório OPUS com conteúdos técnicos. Foram selecionados os conjuntos \textit{MDN Web Docs}, referentes à documentação de tecnologias web mantida pela organização Mozilla, e \textit{PHP}, contendo documentação da linguagem de programação PHP.
 
 As bases podem ser acessadas por meio do seguinte \href{https://opus.nlpl.eu/corpora-search/en&pt-BR}{link}.
 
@@ -252,6 +252,7 @@ Some games drive this cycle by user input. & Alguns jogos guiam este ciclo pela 
 \label{tab:MDNwebdocs}
 \end{table}
 
+
 A Tabela \ref{tab:PHP} apresenta exemplos de pares de frases da base \textit{PHP}:
 
 \begin{table}[H]
@@ -271,54 +272,95 @@ Classify the bug as "Documentation Problem". & Classifique o problema como "Docu
 \label{tab:PHP}
 \end{table}
 
-
 \section{Procedimento de Execução}
 
-A figura \ref{fig:procedimento} demostra os passos para a realização dos testes e coleta dos dados
+A Figura \ref{fig:procedimento} demonstra os passos adotados para a realização dos testes e a coleta dos dados.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[height=0.7\textwidth]{Imagens/process.pdf}    \caption{\label{fig:procedimento} Procedimento}
+    \includegraphics[height=0.7\textwidth]{Imagens/procedimento-v2.pdf}    \caption{\label{fig:procedimento} Procedimento}
     \legend{Fonte: autor}
 \end{figure}
 
 \subsection{Seleção da base de dados}
 
-Conforme descrito na Seção \ref{Database}, a base de dados utilizada neste trabalho será a OPUS (Open Parallel Corpus), escolhida por disponibilizar corpora paralelos públicos para diferentes pares de idiomas. A partir dessa base serão selecionados os conjuntos de textos utilizados nos experimentos, incluindo textos curtos, textos longos e textos de domínio específico.
+Conforme descrito na Seção \ref{Database}, a base de dados utilizada neste trabalho foi a OPUS (Open Parallel Corpus), escolhida por disponibilizar corpora paralelos públicos para diferentes pares de idiomas. A partir dessa base, foram selecionados os conjuntos de textos utilizados nos experimentos, incluindo textos de domínio específico e geral com média de 6 palavras por frase.
 
 \subsection{Seleção dos textos}
 
-Conforme apresentado na Seção \ref{Text-type}, os experimentos considerarão três categorias de textos: textos curtos, textos longos e textos de domínio específico. Para cada categoria, serão selecionados pares de sentenças em inglês e português brasileiro.
+Durante o processo de análise dos dados, constatou-se a presença de traduções incorretas e de textos com grande variação de tamanho, o que inviabilizava a utilização direta da base de dados. Dessa forma, tornou-se necessária uma etapa de seleção prévia dos dados, a fim de garantir a correspondência semântica entre os textos originais e suas respectivas traduções.
 
-Durante o processo de seleção, serão removidos dados que apresentem inconsistências que possam comprometer a avaliação dos modelos, tais como, caracteres inválidos, símbolos não pertencentes ao idioma de destino, excesso de espaços em branco e quebras de linha desnecessárias.
+Para reduzir a subjetividade da seleção, os pares de tradução foram filtrados por meio de um software desenvolvido especificamente para essa finalidade. O procedimento selecionou aleatoriamente os pares e aplicou critérios objetivos: pertencimento a uma das bases definidas, disponibilidade das sentenças em inglês e português brasileiro, correspondência entre cada sentença original e sua referência, ausência de campos vazios ou duplicados e média de aproximadamente seis palavras por sentença. A seleção também eliminou pares que não atendiam a esses critérios, sem priorização manual baseada em julgamento semântico.
 
-Pretende-se utilizar aproximadamente 100 pares de sentenças para cada categoria de texto, com o objetivo de criar uma diversidade entre os textos escolhidos para tradução. A seleção, filtragem e categorização definitiva dos dados serão realizadas durante a etapa experimental do trabalho.
+Os scripts utilizados no processamento e os 4.000 pares selecionados estão disponíveis no repositório \href{https://github.com/TCC-Traducao}{GitHub do projeto}, garantindo a reprodutibilidade da preparação dos dados e dos experimentos.
+
+A Tabela \ref{tab:samples-quantity} apresenta a relação de pares coletados por domínio.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|>{\centering\arraybackslash}p{4cm}|>{\centering\arraybackslash}p{4cm}|>{\centering\arraybackslash}p{4cm}|}
+\hline
+\textbf{Base} & \textbf{Pares coletados} & \textbf{Tipo} \\
+\hline
+PHP & 1000 & Específico \\
+\hline
+MDN\_Web\_Docs & 1000 & Específico \\
+\hline
+OpenSubtitles & 2000 & Geral \\
+\hline
+\end{tabular}
+\caption{Relação dos pares coletados por domínio}
+\label{tab:samples-quantity}
+\end{table}
+
+
+As Figuras \ref{fig:OpenSubtitles}, \ref{fig:mdn-docs} e \ref{fig:PHP} exemplificam a disposição dos pares selecionados em relação à quantidade de palavras contidas por frase e à quantidade total de frases por base.
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{Imagens/base-OpenSubtitles-details.pdf}
+    \caption{\label{fig:OpenSubtitles} Base de dados OpenSubtitles}
+    \legend{Fonte: autor}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{Imagens/base-MDN_Web_Docs-details.pdf}
+    \caption{\label{fig:mdn-docs} Base de dados MDN Web Docs}
+    \legend{Fonte: autor}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{Imagens/base-php-details.pdf}
+    \caption{\label{fig:PHP} Base de dados PHP}
+    \legend{Fonte: autor}
+\end{figure}
 
 \subsection{Tradução gerada e métricas}
 
-Após a seleção e limpeza dos dados, cada modelo de tradução irá executar na mesma máquina virtual, sob as mesmas configurações de hardware e receberá exatamente as mesmas sentenças de entrada em inglês, garantindo condições equivalentes durante os experimentos. As traduções geradas serão então comparadas com suas respectivas traduções de referência em português brasileiro.
+Após a seleção e a limpeza dos dados, cada modelo de tradução foi executado no mesmo computador, sob as mesmas configurações de hardware, e recebeu exatamente as mesmas sentenças de entrada em inglês, garantindo condições equivalentes durante os experimentos. As traduções geradas foram então comparadas com suas respectivas traduções de referência em português brasileiro.
 
-Durante o processo de inferência, serão coletadas métricas relacionadas ao desempenho computacional, incluindo utilização de CPU, consumo de memória RAM e tempo de execução. Posteriormente, as traduções geradas serão avaliadas por meio das métricas BLEU, BERTScore e chrF, com o objetivo de analisar a qualidade das traduções produzidas por cada modelo.
-
-Para reduzir possíveis variações causadas pelo ambiente de execução, cada experimento será executado três vezes para o mesmo conjunto de sentenças. Ao final, será calculado o valor médio das métricas obtidas em cada execução, bem como a variação observada entre os resultados, permitindo uma análise mais consistente do desempenho dos modelos avaliados.
+Durante o processo de inferência, foram coletadas métricas relacionadas ao desempenho computacional, incluindo utilização de CPU, consumo de memória RAM e tempo de execução. Posteriormente, as traduções geradas foram avaliadas por meio das métricas BLEU, BERTScore e chrF, com o objetivo de analisar a qualidade das traduções produzidas por cada modelo.
 
 
 \section{Análise dos dados}
 
-Esta seção tem como objetivo descrever os procedimentos adotados para a análise dos dados coletados a partir dos experimentos de tradução automática. A análise considera tanto a qualidade das traduções geradas quanto o desempenho computacional dos modelos avaliados.
+Esta seção teve como objetivo descrever os procedimentos adotados para a análise dos dados coletados a partir dos experimentos de tradução automática. A análise considerou tanto a qualidade das traduções geradas quanto o desempenho computacional dos modelos avaliados.
 
 \subsection{Comparação entre modelos}
 
-A comparação entre os modelos de tradução será realizada a partir da utilização de um mesmo conjunto de entradas, composto por pares de sentenças paralelas, sendo o inglês a língua de origem e o português brasileiro a língua de destino. Cada modelo receberá exatamente as mesmas sentenças de entrada, a fim de garantir a comparabilidade dos resultados.
+A comparação entre os modelos de tradução foi realizada a partir da utilização de um mesmo conjunto de entradas, composto por pares de sentenças paralelas, sendo o inglês a língua de origem e o português brasileiro a língua de destino. Cada modelo recebeu exatamente as mesmas sentenças de entrada, a fim de garantir a comparabilidade dos resultados.
 
-Para cada sentença de entrada, será gerada uma tradução por cada modelo avaliado. As saídas produzidas serão então comparadas com as respectivas traduções de referência por meio das métricas BLEU, BERTScore e chrF. Além disso, serão coletadas métricas relacionadas ao desempenho computacional, incluindo uso de memória RAM, utilização de CPU e tempo de execução durante o processo de inferência.
+Para cada sentença de entrada, foi gerada uma tradução por cada modelo avaliado. As saídas produzidas foram então comparadas com as respectivas traduções de referência por meio das métricas BLEU, BERTScore e chrF. Além disso, foram coletadas métricas relacionadas ao desempenho computacional, incluindo uso de memória RAM, utilização de CPU e tempo de execução durante o processo de inferência.
 
 
-\subsection{Correlação entre métricas}
+\subsection{Análise entre métricas}
 
-Além da análise individual das métricas, este trabalho também investiga a relação entre elas. As métricas BLEU, BERTScore e chrF possuem fundamentos distintos: enquanto o BLEU é baseado na sobreposição de n-gramas, o BERTScore considera similaridade semântica por meio de representações vetoriais, e o chrF avalia correspondências em nível de caracteres. Dessa forma, é esperado que cada métrica capture diferentes aspectos da qualidade da tradução.
+Além da análise individual das métricas, este trabalho também investigou a relação entre elas. As métricas BLEU, BERTScore e chrF possuem fundamentos distintos: enquanto o BLEU é baseado na sobreposição de n-gramas, o BERTScore considera similaridade semântica por meio de representações vetoriais, e o chrF avalia correspondências em nível de caracteres. Dessa forma, cada métrica capturou diferentes aspectos da qualidade da tradução.
 
-Para analisar a relação entre essas métricas, será realizada uma análise de correlação estatística entre seus valores, considerando os resultados obtidos para todas as sentenças e modelos avaliados. Essa análise tem como objetivo identificar o grau de concordância entre as métricas, bem como possíveis divergências em suas avaliações.
+Para a análise entre as métricas, foi considerado o resultado médio total de todas as execuções de cada modelo, aplicado a cada tipo de base, com o objetivo de verificar como os resultados foram influenciados pelo tipo de texto.
 
 
 

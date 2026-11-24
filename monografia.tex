@@ -1,3 +1,4 @@
+% !TEX program = lualatex
 %% abtex2-modelo-trabalho-academico.tex, v-1.8 laurocesar
 %% Copyright 2012-2013 by abnTeX2 group at http://abntex2.googlecode.com/ 
 %%
@@ -41,8 +42,8 @@
 	%subsubsection=TITLE,% títulos de subsubseções convertidos em letras maiúsculas
 	% -- opções do pacote babel --
 	english,			% idioma adicional para hifenização
-	french,				% idioma adicional para hifenização
-	spanish,			% idioma adicional para hifenização
+	%french,			% idioma adicional para hifenização
+	%spanish,			% idioma adicional para hifenização
 	brazil,				% o último idioma é o principal do documento
 	]{abntex2}
 
@@ -59,6 +60,8 @@
 \usepackage{lastpage}           % Usado pela Ficha catalográfica
 \usepackage{indentfirst}        % Indenta o primeiro parágrafo de cada seção.
 \usepackage{color}              % Controle das cores
+\newcommand{\notaorientador}[1]{\par\noindent\textcolor{red}{\textbf{[Comentário do Orientador: #1]}}\par}
+\newcommand{\atencao}[1]{\textcolor{red}{#1}}
 \usepackage{graphicx}           % Inclusão de gráficos
 \PassOptionsToPackage{normalem}{ulem} % Para não usar sublinhado em referências bibliográficas
 \usepackage{ulem}
@@ -71,9 +74,9 @@
 
 % ---
 \usepackage{float}
-%Trocar fonte para Helvetica/Neo Helvetica
-\setmainfont[Ligatures=TeX]{Helvetica}
-\setsansfont[Ligatures=TeX]{Helvetica}
+% Fonte Helvetica (TeX Gyre Heros = metrica-clone da Helvetica, disponivel no Overleaf)
+\setmainfont[Ligatures=TeX]{TeX Gyre Heros}
+\setsansfont[Ligatures=TeX]{TeX Gyre Heros}
 
 		
 % ---
@@ -95,6 +98,9 @@
 %Outros pacotes
 
 \usepackage{longtable}
+
+\usepackage{tabularx}
+\usepackage{booktabs}
 
 
 %\setlrmarginsandblock{3cm}{2cm}{*}
@@ -128,11 +134,11 @@
 % ---
 % Informações de dados para CAPA e FOLHA DE ROSTO
 % ---
-\titulo{Comparação entre modelos de tradução neurais baseados na arquitetura transformer de código aberto}
+\titulo{Comparação entre modelos de tradução neurais baseados na arquitetura transformer de pesos abertos}
 \autor{Marcos Vinícius de Oliveira Silva}
 \local{Timóteo}
 \data{2026}
-\orientador{Douglas Nunes de Oliveira}
+\orientador{Alessio Miranda Junior}
 \coorientador{}
 \instituicao{%
   Centro Federal de Educação Tecnológica de Minas Gerais
@@ -283,34 +289,34 @@
 % ---
 % Dedicatória
 % ---
-%\input{1-Pre-Textual/Dedicatoria}
+\input{1-Pre-Textual/Dedicatoria}
 % ---
 
 
 % ---
 % Agradecimentos
 % ---
-%\input{1-Pre-Textual/Agradecimentos}
+\input{1-Pre-Textual/Agradecimentos}
 % ---
 
 
 % ---
 % Epígrafe
 % ---
-%\input{1-Pre-Textual/Epigrafe}
+\input{1-Pre-Textual/Epigrafe}
 % ---
 
 % ---
 % RESUMO EM PORTUGUÊS
 % ---
-%\setlength{\absparsep}{18pt}
-%\input{1-Pre-Textual/Resumo.tex}
+\setlength{\absparsep}{18pt}
+\input{1-Pre-Textual/Resumo.tex}
 % ---
 
 % ---
 % RESUMO EM INGLÊS
 % ---
-%\input{1-Pre-Textual/Abstract.tex}
+\input{1-Pre-Textual/Abstract.tex}
 % ---
 
 
@@ -374,8 +380,8 @@
 % ----------------------------------------------------------
 % Estado da arte/história
 % ----------------------------------------------------------
-\chapter{Evolução da Tradução Automática}
-\input{2-Textual/2-estado-arte.tex}
+%\chapter{Evolução da Tradução Automática}
+%\input{2-Textual/2-estado-arte.tex}
 
 \chapter{Referencial teórico}
 \input{2-Textual/3-Referencial-Teorico}
@@ -398,6 +404,10 @@
 %\label{analiseDominio}
 %\input{analiseDominio.tex}
 
+\chapter{Resultados}
+\label{resultados}
+\input{2-Textual/5-Resultados}
+
 % ---
 % Finaliza a parte no bookmark do PDF, para que se inicie o bookmark na raiz
 % ---
@@ -407,9 +417,9 @@
 % ---
 % Conclusão
 % ---
-%\chapter[Conclusão]{Conclusão}
-%\label{conclusao}
-%\input{conclusao.tex}
+\chapter[Conclusão]{Conclusão}
+\label{conclusao}
+\input{2-Textual/6-Conclusao}
 
 
 % ----------------------------------------------------------
@@ -421,6 +431,7 @@
 % ----------------------------------------------------------
 % Referências bibliográficas
 % ----------------------------------------------------------
+\bibliographystyle{abntex2-alf}
 \bibliography{bibfile}
 
 % ----------------------------------------------------------
@@ -466,13 +477,16 @@
 % ---
 % Inicia os anexos
 % ---
-%\begin{anexosenv}
+\begin{anexosenv}
 
 % Imprime uma página indicando o início dos anexos
-%\partanexos
+\partanexos
 
+\chapter{Laudo de Revisão e Checklist de Correções (Orientador)}
+\input{3-Pos-Textual/Anexo.tex}
+\clearpage
 
-%\end{anexosenv}
+\end{anexosenv}
 
 %---------------------------------------------------------------------
 % INDICE REMISSIVO

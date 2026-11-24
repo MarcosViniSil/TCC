@@ -1,0 +1,29 @@
+Este trabalho comparou três modelos de tradução automática baseados na arquitetura Transformer, considerando a tradução do inglês para o português, a qualidade das saídas e a eficiência computacional. Nas condições experimentais estabelecidas, o MarianMT apresentou o melhor desempenho geral, enquanto os modelos M2M-100 e NLLB apresentaram resultados inferiores e mais próximos entre si.
+
+Os cinco objetivos específicos foram atendidos. Primeiro, foram caracterizados o MarianMT, modelo bilíngue e especializado, e os modelos multilíngues M2M-100 e NLLB. Segundo, o MarianMT obteve os maiores valores de BLEU, BERTScore e chrF nos textos gerais e específicos. Terceiro, apresentou os menores valores de uso médio de CPU e tempo de inferência, enquanto os picos de memória foram próximos entre os modelos. Quarto, observou-se que os textos específicos produziram resultados inferiores aos textos gerais nas três métricas de qualidade. Quinto, verificou-se que BLEU, BERTScore e chrF indicaram o melhor desempenho do MarianMT, embora tenham apresentado diferenças na ordenação entre M2M-100 e NLLB.
+
+Em resposta ao problema de pesquisa, o MarianMT apresentou o desempenho mais favorável no cenário analisado, pois combinou maior qualidade de tradução, menor uso médio de CPU e menor tempo de inferência. O pico de memória não diferenciou significativamente os modelos. Portanto, nas condições deste experimento, o MarianMT mostrou o melhor compromisso entre qualidade e eficiência computacional.
+
+\subsection{Limitações}
+
+As frases tinham aproximadamente seis palavras.
+
+A execução experimental ocorreu somente em CPU.
+
+Comparou-se um modelo bilíngue com modelos multilíngues.
+
+Essas condições restringem a generalização dos resultados, pois não representam todos os tamanhos de sentença, ambientes computacionais ou configurações de modelos.
+
+\subsection{Trabalhos futuros}
+
+Algumas possibilidades de continuidade são apresentadas a seguir:
+
+\begin{itemize}
+\item Avaliar frases com diferentes comprimentos e domínios textuais;
+
+\item Investigar outras arquiteturas de tradução automática;
+
+\item Comparar modelos de pesos fechados e abertos;
+
+\item Avaliar os modelos utilizando GPU e diferentes ambientes computacionais.
+\end{itemize}
